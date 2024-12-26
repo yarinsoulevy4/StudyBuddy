@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#87B4D8"
+    tools:context=".RegTorS">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="303dp"
+        android:layout_height="172dp"
+
+        android:gravity="center"
+        android:text="בתור מה תרצה להתחבר?"
+        android:textColor="#013265"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <Button
+        android:id="@+id/regT"
+        android:layout_width="154dp"
+        android:layout_height="93dp"
+        android:text="TEACHER"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="506dp" />
+
+    <Button
+        android:id="@+id/regS"
+        android:layout_width="159dp"
+        android:layout_height="94dp"
+        android:text="STUDENT"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="506dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="התחברות כמשתמש"
+        android:textColor="#013265"
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="לומד או מלמד?"
+        android:textColor="#013265"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="278dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="241dp"
+        android:layout_height="131dp"
+        app:srcCompat="@mipmap/stbd"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="315dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
