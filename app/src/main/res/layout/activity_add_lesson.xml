@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#87B4D8"
+
+    tools:context=".addlesson">
+
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:scrollbarSize="20dp"
+        android:text="ADD LESSON"
+        android:textColor="#2A4861"
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/etcteachername"
+        android:layout_width="264dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="שם המורה"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="85dp" />
+
+    <EditText
+        android:id="@+id/etcstudentname"
+        android:layout_width="264dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="שם התלמיד"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <EditText
+        android:id="@+id/etlessondetails"
+        android:layout_width="226dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="פרטים על השיעור"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+
+    <Button
+        android:id="@+id/btncreate"
+        android:layout_width="167dp"
+        android:layout_height="63dp"
+        android:backgroundTint="#2A4861"
+        android:text="CREATE LESSON"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="627dp" />
+
+    <Spinner
+        android:id="@+id/spsubject"
+        android:layout_width="261dp"
+        android:layout_height="43dp"
+        android:entries="@array/subjectArr"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="365dp" />
+
+    <Spinner
+        android:id="@+id/spdays"
+        android:layout_width="257dp"
+        android:layout_height="45dp"
+        android:entries="@array/daysArr"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <Spinner
+        android:id="@+id/sphours"
+        android:layout_width="263dp"
+        android:layout_height="37dp"
+        android:entries="@array/hoursArr"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

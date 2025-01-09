@@ -162,6 +162,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener,
 
 
     }
+    public void goLog (View view)
+    {
+        Intent go = new Intent(getApplicationContext(),login.class);
+        startActivity(go);
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

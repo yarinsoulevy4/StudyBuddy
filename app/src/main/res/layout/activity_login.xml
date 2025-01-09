@@ -11,47 +11,57 @@
     <TextView
         android:id="@+id/txtLogin"
         android:layout_width="119dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="144dp"
+        android:layout_height="0dp"
         android:layout_marginTop="44dp"
+        android:layout_marginBottom="113dp"
         android:text="LOGIN"
         android:textColor="#2E4963"
         android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/etemaillogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etemaillogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="166dp"
+        android:layout_width="248dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="114dp"
         android:ems="10"
         android:inputType="text"
         android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/etPasswordlogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
 
     <EditText
         android:id="@+id/etPasswordlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="123dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Email"
 
-        app:layout_constraintStart_toStartOf="@+id/etemaillogin"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/btnlogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etemaillogin" />
 
     <Button
         android:id="@+id/btnlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginBottom="189dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginBottom="147dp"
+        android:backgroundTint="#2A4861"
         android:text="CONTINUE"
+        android:onClick="goIn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordlogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

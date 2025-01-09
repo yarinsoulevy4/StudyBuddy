@@ -2,28 +2,22 @@ package com.example.studybuddy.model;
 
 public class User {
 
-    String id, fname,lname, phone, email, password, city;
+    String id, fname,lname, phone, email, password;
 
     public User() {
     }
-
-    public User(String id, String fname, String lname, String phone, String email, String password, String city) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+    // Constructor with 7 parameters
+    public User(String uid, String firstName, String lastName, String phone, String email, String password, String city) {
+        this.id = uid;
+        this.fname = firstName;
+        this.lname = lastName;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.city = city;
     }
 
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+
 
     public User(String id, String fname, String lname, String phone, String email) {
         this.id = id;
@@ -90,7 +84,7 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", city='" + city + '\'' +
+
                 '}';
     }
 }

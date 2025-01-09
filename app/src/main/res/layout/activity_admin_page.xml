@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:  ="#87B4D8"
+    tools:context=".AdminPage">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="344dp"
+        android:layout_height="98dp"
+        android:text="WELCOME ADMIN!"
+        android:textColor="#2A4861"
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/btnSuser"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#2A4861"
+        android:text="TEACHER USERS LIST"
+
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <Button
+        android:id="@+id/btnTuser"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#2A4861"
+        android:text="STUDENTS USERS LIST"
+
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="228dp" />
+
+    <Button
+        android:id="@+id/btnlessons"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#2A4861"
+        android:text="WATCH LESSONS HISTORY"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="349dp" />
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="409dp"
+        android:layout_height="200dp"
+        android:src="@mipmap/logo"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="497dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

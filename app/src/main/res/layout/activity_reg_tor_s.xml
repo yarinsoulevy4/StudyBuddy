@@ -24,12 +24,16 @@
         android:id="@+id/regT"
         android:layout_width="154dp"
         android:layout_height="93dp"
+        android:backgroundTint="#2A4861"
+
         android:text="TEACHER"
         tools:layout_editor_absoluteX="40dp"
         tools:layout_editor_absoluteY="506dp" />
 
     <Button
         android:id="@+id/regS"
+        android:backgroundTint="#2A4861"
+
         android:layout_width="159dp"
         android:layout_height="94dp"
         android:text="STUDENT"
@@ -45,17 +49,6 @@
         android:textSize="40dp"
         tools:layout_editor_absoluteX="39dp"
         tools:layout_editor_absoluteY="27dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="לומד או מלמד?"
-        android:textColor="#013265"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="278dp" />
 
     <ImageView
         android:id="@+id/imageView2"

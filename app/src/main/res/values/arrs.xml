@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="subjectArr">
+        <item>מתמטיקה 5 יב</item>
+        <item>מתמטיקה 4 יב</item>
+        <item>מתמטיקה 3 יב</item>
+        <item>מתמטיקה 5 יא</item>
+        <item>מתמטיקה 4 יא</item>
+        <item>מתמטיקה 3 יא</item>
+        <item>מתמטיקה 5 י</item>
+        <item>מתמטיקה 4 י</item>
+        <item>מתמטיקה 3 י</item>
+        <item>אנגלית 5 יב</item>
+        <item>אנגלית 4 יב</item>
+        <item>אנגלית 3 יב</item>
+        <item>אנגלית 5 יא</item>
+        <item>אנגלית 4 יא</item>
+        <item>אנגלית 3 יא</item>
+        <item>אנגלית 5 י</item>
+        <item>אנגלית 4 י</item>
+        <item>אנגלית 3 י</item>
+        <item>היסטוריה</item>
+        <item>ספרות</item>
+        <item>תנ"ך</item>
+        <item>אזרחות</item>
+        <item>לשון</item>
+        <item>ערבית</item>
+        <item>פיזיקה</item>
+        <item>ביולוגיה</item>
+        <item>מחשבת ישראל</item>
+        <item>גאוגרפיה</item>
+        <item>ביוטכנולוגיה</item>
+        <item>ספרדית</item>
+
+
+    </string-array>
+    <string-array name="hoursArr">
+        <item>09:00</item>
+        <item>09:15</item>
+        <item>09:30</item>
+        <item>09:45</item>
+        <item>10:00</item>
+        <item>10:15</item>
+        <item>10:30</item>
+        <item>10:45</item>
+        <item>11:00</item>
+        <item>11:15</item>
+        <item>11:30</item>
+        <item>11:45</item>
+        <item>12:00</item>
+        <item>12:15</item>
+        <item>12:30</item>
+        <item>12:45</item>
+        <item>13:00</item>
+        <item>13:15</item>
+        <item>13:30</item>
+        <item>13:45</item>
+        <item>14:00</item>
+        <item>14:15</item>
+        <item>14:30</item>
+        <item>14:45</item>
+        <item>15:00</item>
+        <item>15:15</item>
+        <item>15:30</item>
+        <item>15:45</item>
+        <item>16:00</item>
+        <item>16:15</item>
+        <item>16:30</item>
+        <item>16:45</item>
+        <item>17:00</item>
+        <item>17:15</item>
+        <item>17:30</item>
+        <item>17:45</item>
+        <item>18:00</item>
+        <item>18:15</item>
+        <item>18:30</item>
+        <item>18:45</item>
+        <item>19:00</item>
+        <item>19:15</item>
+        <item>19:30</item>
+        <item>19:45</item>
+        <item>20:00</item>
+
+    </string-array>
+    <string-array name="daysArr">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
+    <string-array name="CityArr">
+        <item>ירושלים</item>
+        <item>תל אביב</item>
+        <item>חיפה</item>
+        <item>אילת</item>
+        <item>אשדוד</item>
+        <item>אשקלון</item>
+        <item>באר שבע</item>
+        <item>נצרת</item>
+        <item>רמת גן</item>
+        <item>פתח תקווה</item>
+        <item>נתניה</item>
+        <item>הרצליה</item>
+        <item>כפר סבא</item>
+        <item>רעננה</item>
+        <item>בת ים</item>
+        <item>חולון</item>
+        <item>רחובות</item>
+        <item>קרית שמונה</item>
+        <item>עפולה</item>
+        <item>זכרון יעקב</item>
+        <item>קרית גת</item>
+        <item>קרית ביאליק</item>
+        <item>יוקנעם</item>
+        <item>טבריה</item>
+        <item>ראשון לציון</item>
+        <item>מודיעין</item>
+        <item>מעלה אדומים</item>
+        <item>קיסריה</item>
+        <item>ערד</item>
+        <item>אור יהודה</item>
+        <item>צפת</item>
+        <item>דימונה</item>
+        <item>נצרת עילית</item>
+        <item>בני ברק</item>
+        <item>חדרה</item>
+        <item>נתיבות</item>
+        <item>קרית מוצקין</item>
+
+    </string-array>
+
+
+</resources>

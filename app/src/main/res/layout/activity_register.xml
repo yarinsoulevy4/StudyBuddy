@@ -86,10 +86,12 @@
 
     <Button
         android:id="@+id/btnregister"
+        android:onClick="goLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="136dp"
         android:layout_marginBottom="72dp"
+        android:backgroundTint="#2A4861"
         android:text="REGISTER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
