@@ -6,83 +6,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87B4D8"
-
-    tools:context=".addlesson">
-
+    tools:context=".screens.AddLesson">
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="282dp"
-        android:layout_height="49dp"
+        android:layout_width="259dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="10dp"
         android:scrollbarSize="20dp"
         android:text="ADD LESSON"
         android:textColor="#2A4861"
         android:textSize="40dp"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etcteachername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etcteachername"
-        android:layout_width="264dp"
-        android:layout_height="39dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
-        android:hint="שם המורה"
+        android:hint="Teacher Name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etcstudentname"
+        app:layout_constraintEnd_toEndOf="@+id/etcstudentname"
+        app:layout_constraintStart_toStartOf="@+id/etcstudentname"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <!-- Calendar text color -->
+
 
     <EditText
         android:id="@+id/etcstudentname"
-        android:layout_width="264dp"
-        android:layout_height="39dp"
+        android:layout_width="223dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="7dp"
         android:ems="10"
-        android:hint="שם התלמיד"
+        android:hint="Student Name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="137dp" />
+        app:layout_constraintBottom_toTopOf="@+id/sphours"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etcteachername" />
 
     <EditText
         android:id="@+id/etlessondetails"
-        android:layout_width="226dp"
-        android:layout_height="41dp"
+        android:layout_width="215dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="45dp"
         android:ems="10"
-        android:hint="פרטים על השיעור"
+        android:hint="Details"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="458dp" />
-
+        app:layout_constraintBottom_toTopOf="@+id/btncreate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSubjects" />
 
     <Button
         android:id="@+id/btncreate"
-        android:layout_width="167dp"
-        android:layout_height="63dp"
+        android:layout_width="130dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#2A4861"
         android:text="CREATE LESSON"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="627dp" />
-
-    <Spinner
-        android:id="@+id/spsubject"
-        android:layout_width="261dp"
-        android:layout_height="43dp"
-        android:entries="@array/subjectArr"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="365dp" />
-
-    <Spinner
-        android:id="@+id/spdays"
-        android:layout_width="257dp"
-        android:layout_height="45dp"
-        android:entries="@array/daysArr"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="266dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etlessondetails" />
 
     <Spinner
         android:id="@+id/sphours"
-        android:layout_width="263dp"
-        android:layout_height="37dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
         android:entries="@array/hoursArr"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="193dp" />
+        app:layout_constraintBottom_toTopOf="@+id/datePicker"
+        app:layout_constraintEnd_toEndOf="@+id/btncreate"
+        app:layout_constraintStart_toStartOf="@+id/etcstudentname"
+        app:layout_constraintTop_toBottomOf="@+id/etcstudentname" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="295dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="28dp"
+        android:background="#B1B0E0"
+        android:calendarTextColor="#ADDFEF"
+        app:layout_constraintBottom_toTopOf="@+id/etSubjects"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sphours" />
+
+    <EditText
+        android:id="@+id/etSubjects"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:hint="Subject"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etlessondetails"
+        app:layout_constraintEnd_toEndOf="@+id/etlessondetails"
+        app:layout_constraintStart_toStartOf="@+id/etlessondetails"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,32 @@
 package com.example.studybuddy.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Teacher extends User{
-    protected String teacherName;
-    protected String teacherPhone;
+public class Teacher extends User implements Serializable {
+
     protected String subject;
- protected ArrayList<String> subjects;
+
   protected double price;
-  double rate;
-  double sumRate;
-  int numOfRate;
+ protected double rate;
+ protected double sumRate;
+ protected int numOfRate;
 
 
-    // Constructor with all attributes (ensuring the super call is first)
-    public Teacher(String id, String fname, String lname, String phone, String email, ArrayList<String> subjects, double price, double rate, double sumRate, int numOfRate) {
-        super(id, fname, lname, phone, email);  // Calling the constructor of the superclass User
-        this.subjects = subjects;
+    public Teacher() {
+    }
+
+    public Teacher(String subject, double price, double rate, double sumRate, int numOfRate) {
+        this.subject = subject;
+        this.price = price;
+        this.rate = rate;
+        this.sumRate = sumRate;
+        this.numOfRate = numOfRate;
+    }
+
+    public Teacher(String id, String fname, String lname, String phone, String email, String password, String subject, double price, double rate, double sumRate, int numOfRate) {
+        super(id, fname, lname, phone, email, password);
+        this.subject = subject;
         this.price = price;
         this.rate = rate;
         this.sumRate = sumRate;
@@ -24,24 +34,30 @@ public class Teacher extends User{
     }
 
 
-    // Constructor for adding a new teacher
-    public Teacher(String id, String teacherName, String teacherPhone, String subject) {
-        super(id, teacherName, "", teacherPhone, "");  // Default or empty values for fname, lname, email, password
-        this.teacherName = teacherName;
-        this.teacherPhone = teacherPhone;
+    public Teacher(User user, String subject, double price, double rate, double sumRate, int numOfRate) {
+        super(user);
         this.subject = subject;
+        this.price = price;
+        this.rate = rate;
+        this.sumRate = sumRate;
+        this.numOfRate = numOfRate;
     }
 
+    public Teacher(Teacher teacher) {
+        super(teacher);
 
-
-    // Getters and Setters
-    public ArrayList<String> getSubjects() {
-        return subjects;
     }
 
-    public void setSubjects(ArrayList<String> subjects) {
-        this.subjects = subjects;
+    public Teacher(String id, String fname, String lname, String phone, String email, String subject, double price, double rate, double sumRate, int numOfRate) {
+        super(id, fname, lname, phone, email);
+        this.subject = subject;
+        this.price = price;
+        this.rate = rate;
+        this.sumRate = sumRate;
+        this.numOfRate = numOfRate;
     }
+
+// Constructor with all attributes (ensuring the super call is first)
 
     public double getPrice() {
         return price;
@@ -75,10 +91,20 @@ public class Teacher extends User{
         this.numOfRate = numOfRate;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+
+
     @Override
     public String toString() {
         return "Teacher{" +
-                "subjects=" + subjects +
+                "subject='" + subject + '\'' +
                 ", price=" + price +
                 ", rate=" + rate +
                 ", sumRate=" + sumRate +
@@ -91,6 +117,8 @@ public class Teacher extends User{
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 }
 
 

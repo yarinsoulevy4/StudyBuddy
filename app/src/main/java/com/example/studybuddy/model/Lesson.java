@@ -1,30 +1,39 @@
 package com.example.studybuddy.model;
 
-import android.widget.SeekBar;
+import java.io.Serializable;
 
-public class Lesson
+public class Lesson implements Serializable
+
+
 {
+
+    protected String id;
     protected User student; //the student
     protected Teacher teacher ;// the teacher
     protected  String subject;// subject of the lesson
     protected  String date;
     protected  String hour;
-    protected SeekBar status;// the number of lesson they are in
+
     protected  String details;// little summary of the lesson- progress
 
 
-    public Lesson(User student, Teacher teacher, String subject, String date, String hour, SeekBar status, String details) {
+
+
+
+    public Lesson(String id, User student, Teacher teacher, String subject, String date, String hour,  String details) {
+        this.id = id;
         this.student = student;
         this.teacher = teacher;
         this.subject = subject;
         this.date = date;
         this.hour = hour;
-        this.status = status;
+
         this.details = details;
     }
 
-    public Lesson(String key, String teachername, String studentname, String days, String hours, String subject, String details, String open, User theUser) {
-    }
+
+
+
 
     public User getStudent() {
         return student;
@@ -66,13 +75,7 @@ public class Lesson
         this.hour = hour;
     }
 
-    public SeekBar getStatus() {
-        return status;
-    }
 
-    public void setStatus(SeekBar status) {
-        this.status = status;
-    }
 
     public String getDetails() {
         return details;
@@ -82,15 +85,24 @@ public class Lesson
         this.details = details;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
-                "student=" + student +
+                "id='" + id + '\'' +
+                ", student=" + student +
                 ", teacher=" + teacher +
                 ", subject='" + subject + '\'' +
                 ", date='" + date + '\'' +
                 ", hour='" + hour + '\'' +
-                ", status='" + status + '\'' +
+
                 ", details='" + details + '\'' +
                 '}';
     }

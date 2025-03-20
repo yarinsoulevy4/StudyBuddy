@@ -2,57 +2,81 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/spinnerContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTeacher"
-    android:background="#87B4D8">
+    android:background="#87B4D8"
+    android:paddingTop="20dp">
+
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="296dp"
-        android:layout_height="60dp"
-        android:text="ADD TEACHER"
+        android:layout_width="379dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="121dp"
+        android:gravity="center"
+        android:text="CONNECT AS TEACHER"
         android:textColor="#2A4861"
         android:textSize="40dp"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="27dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spTsubject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etTname"
+        android:id="@+id/etTPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="137dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Price per lesson"
         android:inputType="text"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="122dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateT"
+        app:layout_constraintStart_toStartOf="@+id/etSubjects"
+        app:layout_constraintTop_toBottomOf="@+id/etSubjects" />
 
     <Button
         android:id="@+id/btnCreateT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CREATE TEACHER"
+        android:layout_width="155dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="77dp"
         android:backgroundTint="#2A4861"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="651dp" />
+        android:text="CONTINUE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTPrice" />
 
     <Spinner
         android:id="@+id/spTsubject"
-        android:layout_width="373dp"
-        android:layout_height="122dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="74dp"
         android:entries="@array/subjectArr"
-        tools:layout_editor_absoluteX="22dp"
-        tools:layout_editor_absoluteY="304dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etSubjects"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/etTphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/etSubjects"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="38dp"
         android:ems="10"
-        android:hint="Phone"
         android:inputType="text"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="208dp" />
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/etTPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spTsubject" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

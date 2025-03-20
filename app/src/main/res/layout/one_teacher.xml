@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clT"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="#87B4D8"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/tvTName"
+        android:layout_width="200dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="1dp"
+        android:text="Teacher Name"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvTSubjects"
+        app:layout_constraintStart_toStartOf="@+id/tvTSubjects"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTSubjects"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Subjects:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvTPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTName" />
+
+    <TextView
+        android:id="@+id/tvTPrice"
+        android:layout_width="165dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:text="price:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvTRate"
+        app:layout_constraintStart_toStartOf="@+id/tvTSubjects"
+        app:layout_constraintTop_toBottomOf="@+id/tvTSubjects" />
+
+    <TextView
+        android:id="@+id/tvTRate"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
+        android:text="rating:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvTPrice" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

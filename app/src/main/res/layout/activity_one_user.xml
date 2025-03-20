@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="#87B4D8"
+    android:padding="10dp"
+    tools:context=".one_user">
+
+    <TextView
+        android:id="@+id/tvFname"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        android:text="First Name:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvLname"
+        app:layout_constraintEnd_toEndOf="@+id/tvLname"
+        app:layout_constraintStart_toStartOf="@+id/tvLname"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLname"
+        android:layout_width="219dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="26dp"
+        android:text="Last Name:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvPhone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFname" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="17dp"
+        android:text="Phone:"
+        android:textColor="#2A4861"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvLname"
+        app:layout_constraintStart_toStartOf="@+id/tvLname"
+        app:layout_constraintTop_toBottomOf="@+id/tvLname" />
+</androidx.constraintlayout.widget.ConstraintLayout>

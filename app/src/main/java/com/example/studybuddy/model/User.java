@@ -1,22 +1,33 @@
 package com.example.studybuddy.model;
 
-public class User {
+import java.io.Serializable;
 
-    String id, fname,lname, phone, email, password;
+public class User implements Serializable {
+
+  protected   String id, fname,lname, phone, email, password;
 
     public User() {
     }
     // Constructor with 7 parameters
-    public User(String uid, String firstName, String lastName, String phone, String email, String password, String city) {
-        this.id = uid;
-        this.fname = firstName;
-        this.lname = lastName;
+
+
+    public User(String id, String fname, String lname, String phone, String email, String password) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
         this.phone = phone;
         this.email = email;
         this.password = password;
     }
 
+    public User(User user) {
+        this.id = user.id;
+        this.fname = user.fname;
+        this.lname = user.lname;
+        this.phone = user.phone;
+        this.email = user.email;
 
+    }
 
 
     public User(String id, String fname, String lname, String phone, String email) {
@@ -27,51 +38,51 @@ public class User {
         this.email = email;
     }
 
-    protected String getId() {
+    public String getId() {
         return id;
     }
 
-    protected void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    protected String getFname() {
+    public String getFname() {
         return fname;
     }
 
-    protected void setFname(String fname) {
+    public void setFname(String fname) {
         this.fname = fname;
     }
 
-    protected String getLname() {
+    public String getLname() {
         return lname;
     }
 
-    protected void setLname(String lname) {
+    public void setLname(String lname) {
         this.lname = lname;
     }
 
-    protected String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    protected void setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    protected String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    protected void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    protected String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    protected void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

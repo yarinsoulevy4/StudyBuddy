@@ -6,19 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87B4D8"
-    tools:context=".Register">
+    tools:context=".screens.Register">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="165dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="31dp"
+        android:layout_width="288dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="65dp"
         android:text="REGISTER"
         android:textColor="#2E4963"
-        android:textSize="30dp"
+        android:textSize="50dp"
         app:layout_constraintBottom_toTopOf="@+id/etfname"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,9 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="34dp"
         android:ems="10"
-        android:hint="fname"
+        android:hint="First name"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/etlname"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="40dp"
         android:ems="10"
-        android:hint="lname"
+        android:hint="Last name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/spCity"
+        app:layout_constraintBottom_toTopOf="@+id/etphone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etfname" />
 
@@ -53,21 +54,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="39dp"
         android:ems="10"
-        android:hint="phone"
+        android:hint="Phone number"
         app:layout_constraintBottom_toTopOf="@+id/etemail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spCity" />
+        app:layout_constraintTop_toBottomOf="@+id/etlname" />
 
     <EditText
         android:id="@+id/etemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="51dp"
         android:ems="10"
-        android:hint="email"
+        android:hint="Email address"
         app:layout_constraintBottom_toTopOf="@+id/etpassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etphone" />
@@ -77,35 +78,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="34dp"
         android:ems="10"
-        android:hint="password"
-        app:layout_constraintBottom_toTopOf="@+id/btnregister"
+        android:hint="Password"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etemail" />
 
     <Button
-        android:id="@+id/btnregister"
-        android:onClick="goLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="72dp"
+        android:id="@+id/btnRegister"
+        android:layout_width="129dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="91dp"
+
         android:backgroundTint="#2A4861"
         android:text="REGISTER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etpassword" />
 
-    <Spinner
-        android:id="@+id/spCity"
-        android:layout_width="248dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="38dp"
-        android:autofillHints="city"
-        android:entries="@array/CityArr"
-        app:layout_constraintBottom_toTopOf="@+id/etphone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etlname" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,64 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87B4D8"
-    tools:context=".MainActivity">
+    tools:context=".screens.MainActivity">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="41dp"
+        android:layout_width="396dp"
+        android:layout_height="361dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="26dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="55dp"
         app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@mipmap/finallogo" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginEnd="57dp"
+        android:layout_width="229dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="141dp"
         android:backgroundTint="#2A4861"
         android:onClick="goRegister"
         android:text="REGISTER"
-        android:textSize="20dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signup" />
-
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="146dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="#2A4861"
-        android:onClick="goLogin"
-        android:text="LOGIN"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/aboutUs"
-        app:layout_constraintEnd_toStartOf="@+id/login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/aboutUs"
-        android:layout_width="137dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="134dp"
-        android:backgroundTint="#2A4861"
-        android:onClick="goAboutUs"
-        android:text="ABOUT US"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="231dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#2A4861"
+        android:onClick="goLogin"
+        android:text="LOGIN"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
