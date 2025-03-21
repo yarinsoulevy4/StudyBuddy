@@ -28,4 +28,12 @@ public class HomePage extends AppCompatActivity {
     public void goSearchTeacher(View view) {
         Intent go = new Intent(getApplicationContext(), SearchTeacher.class);
         startActivity(go);
+    }
+
+    public void goProfile(View view) {
+        Intent go = new Intent(getApplicationContext(), Profile.class);
+        startActivity(go);
     }}
+
+
+

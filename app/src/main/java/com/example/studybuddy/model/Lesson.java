@@ -19,8 +19,7 @@ public class Lesson implements Serializable
 
 
 
-
-    public Lesson(String id, User student, Teacher teacher, String subject, String date, String hour,  String details) {
+    public Lesson(String id, User student, Teacher teacher, String date, String hour, String details, String subject) {
         this.id = id;
         this.student = student;
         this.teacher = teacher;

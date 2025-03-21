@@ -2,11 +2,16 @@ package com.example.studybuddy.services;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.studybuddy.model.Lesson;
 import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -217,6 +222,7 @@ public class DatabaseService {
         getData("lessons/" + lessonId, Lesson.class, callback);
     }
 
+
     /// generate a new id for a new teacher in the database
     /// @return a new id for the teacher
     /// @see #generateNewId(String)
@@ -292,7 +298,21 @@ public class DatabaseService {
     }
 
 
+    public void submitAddLessonForTeacher(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
 
+        writeData("TeacherLessonSchedule/"+lesson.getTeacher()+"/"+ lesson.getDate().substring(0,4)+"/" +lesson.getDate().substring(5,7)+"/"+lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+
+        // writeData("coaches/"+workout.getCoachId()+  "/workouts/" + workout.getId(), workout, callback);
+    }
+
+
+
+    // New public method to submit a workout request
+    public void submitAddLessonForStudent(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
+
+        writeData("StudentLessonSchedule/"+lesson.getTeacher()+"/"+ lesson.getDate().substring(0,4)+"/"+lesson.getDate().substring(5,7)+"/" +lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+        //  writeData("trainees/"+workout.getTraineeId()+  "/workouts/" + workout.getId(), workout, callback);
+    }
 
 
     public void getTecherLessons( Teacher teacher,@NotNull final DatabaseCallback<List<Lesson>> callback) {
@@ -322,6 +342,66 @@ public class DatabaseService {
     public void updateUser(User currentUser, DatabaseCallback<Void> databaseCallback) {
         createNewUser(currentUser, databaseCallback);
     }
+
+
+
+
+    public void getLessonForTeacher( String coachId,   @NotNull final DatabaseCallback<List<Lesson>> callback) {
+
+        String path="teacherLesson/" + coachId;
+        DatabaseReference myRef=  readData(path);
+
+
+
+
+
+        List<Lesson> lessons = new ArrayList<>();
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Log.d("postSnapshot", "num  is: " + postSnapshot.getKey());
+
+                    for (DataSnapshot dm : postSnapshot.getChildren()) {
+
+                        Log.d("dm", "num  is: " + dm.getKey());
+                        for (DataSnapshot dd : dm.getChildren()) {
+
+
+                            Log.d("dd", "num  is: " + dd.getKey());
+                            for (DataSnapshot value : dd.getChildren()) {
+                                Lesson lesson = value.getValue(Lesson.class);
+
+
+                                lessons.add(lesson);
+                                Log.d("workout", "Value is: " + lesson);
+                            }
+
+
+                        }
+                    }
+
+                }
+
+
+                callback.onCompleted(lessons);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
+        });
+
+
+    }
+
 
 
 

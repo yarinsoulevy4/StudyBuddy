@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.studybuddy.R;
+import com.example.studybuddy.TeacherHomePage;
 import com.example.studybuddy.model.Lesson;
 import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.model.User;
@@ -78,28 +79,6 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
 
         if (teacher != null) {
             etteachername.setText(teacher.getFname() + " " + teacher.getLname());
-
-
-            databaseService.getTecherLessons(teacher, new DatabaseService.DatabaseCallback<List<Lesson>>() {
-
-
-                @Override
-               public void onFailed(Exception e) {
-
-                }
-
-                @Override
-              public   void onCompleted(List<Lesson> object) {
-
-
-                    teacherLessons.clear();
-                    teacherLessons.addAll(object);
-                    // Sort the list by date
-                    teacherLessons.sort((l1, l2) -> l2.getDate().compareTo(l1.getDate()));
-
-                }
-            });
-
         }
     }
 
@@ -118,17 +97,76 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         String id = DatabaseService.getInstance().generateLessonId();
+        String zero = "", zero2 = "";
 
-        Teacher newTeacher = new Teacher(teacher);
-        Lesson lesson = new Lesson(id, user, newTeacher, subject, date, hour, details);
-        databaseService.createNewLesson(lesson, new DatabaseService.DatabaseCallback<Void>() {
+        if ((datePicker.getMonth() + 1) < 10) zero = "0";
+        if ((datePicker.getDayOfMonth()) < 10) zero2 = "0";
+
+        String selectedDate = datePicker.getYear() + "/" + zero + (datePicker.getMonth() + 1) + "/" + zero2 + datePicker.getDayOfMonth();
+        hour = sphours.getSelectedItem().toString();
+        details = etclassdetails.getText().toString() + "";
+        subject = subjects.getText().toString() + "";
+        String currentStudentId = AuthenticationService.getInstance().getCurrentUserId();
+
+        // Fetch the User object for the student before creating the Lesson
+        DatabaseService.getInstance().getUser(currentStudentId, new DatabaseService.DatabaseCallback<User>() {
             @Override
-            public void onCompleted(Void object) {
+            public void onCompleted(User student) {
+                if (student == null) {
+                    Toast.makeText(AddLesson.this, "Failed to get student details", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Create the Lesson object with proper User and Teacher objects
+                final Lesson lesson = new Lesson(id, student, teacher, selectedDate, hour, details, subject);
+
+                submitLesson(lesson);
             }
 
             @Override
             public void onFailed(Exception e) {
+                Toast.makeText(AddLesson.this, "Failed to fetch student", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    // Method to submit the lesson request
+    private void submitLesson(Lesson lesson) {
+        databaseService.submitAddLessonForTeacher(lesson, new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+                databaseService.submitAddLessonForStudent(lesson, new DatabaseService.DatabaseCallback<Void>() {
+                    @Override
+                    public void onCompleted(Void object) {
+                        Toast.makeText(AddLesson.this, "Lesson Request Submitted Successfully", Toast.LENGTH_SHORT).show();
+                        resetFields();
+                        Intent go = new Intent(AddLesson.this, TeacherHomePage.class);
+                        startActivity(go);
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+                        Toast.makeText(AddLesson.this, "Failed to submit lesson for student", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                Toast.makeText(AddLesson.this, "Failed to submit request", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    // Reset the fields after submission
+    private void resetFields() {
+        etstudentname.setText("");
+        etteachername.setText("");
+        etclassdetails.setText("");
+        subjects.setText("");
+        sphours.setSelection(0);  // Reset spinner to first item
+        datePicker.updateDate(2025, 0, 1);  // Reset to default date (e.g., Jan 1, 2025)
+    }
 }
+

@@ -43,6 +43,7 @@
         android:layout_marginBottom="13dp"
         android:backgroundTint="#2A4861"
         android:text="MY PROFILE"
+        android:onClick="goProfile"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

@@ -1,12 +1,17 @@
 package com.example.studybuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.studybuddy.screens.Profile;
+import com.example.studybuddy.screens.teacherSchedule;
 
 public class TeacherHomePage extends AppCompatActivity {
 
@@ -21,4 +26,14 @@ public class TeacherHomePage extends AppCompatActivity {
             return insets;
         });
     }
+    public void goProfile(View view) {
+        Intent go = new Intent(getApplicationContext(), Profile.class);
+        startActivity(go);
+    }
+    public void goSchedule(View view) {
+        Intent go = new Intent(getApplicationContext(), teacherSchedule.class);
+        startActivity(go);
+    }
 }
+
+
