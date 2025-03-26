@@ -25,8 +25,14 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
     }
+
     public void goSearchTeacher(View view) {
         Intent go = new Intent(getApplicationContext(), SearchTeacher.class);
+        startActivity(go);
+    }
+
+    public void goSchedule(View view){
+        Intent go = new Intent(getApplicationContext(), StudentSchedule.class);
         startActivity(go);
     }
 

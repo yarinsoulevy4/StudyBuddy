@@ -32,7 +32,10 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
     Intent takeit;
     Teacher teacher;
     Button btncreate;
-    EditText etteachername, etstudentname, etclassdetails, subjects;
+    EditText etteachername;
+    EditText etstudentname;
+    EditText etclassdetails;
+    EditText etSubjects;
     Spinner sphours;
     DatePicker datePicker;
     public User user = new User();
@@ -79,6 +82,7 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
 
         if (teacher != null) {
             etteachername.setText(teacher.getFname() + " " + teacher.getLname());
+            etSubjects.setText(teacher.getSubject().toString());
         }
     }
 
@@ -86,7 +90,7 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         etstudentname = findViewById(R.id.etcstudentname);
         etteachername = findViewById(R.id.etcteachername);
         btncreate = findViewById(R.id.btncreate);
-        subjects = findViewById(R.id.etSubjects);
+        etSubjects = findViewById(R.id.etSubjects);
         sphours = findViewById(R.id.sphours);
         etclassdetails = findViewById(R.id.etlessondetails);
         datePicker = findViewById(R.id.datePicker);
@@ -105,30 +109,19 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         String selectedDate = datePicker.getYear() + "/" + zero + (datePicker.getMonth() + 1) + "/" + zero2 + datePicker.getDayOfMonth();
         hour = sphours.getSelectedItem().toString();
         details = etclassdetails.getText().toString() + "";
-        subject = subjects.getText().toString() + "";
-        String currentStudentId = AuthenticationService.getInstance().getCurrentUserId();
+        subject = etSubjects.getText().toString() + "";
 
-        // Fetch the User object for the student before creating the Lesson
-        DatabaseService.getInstance().getUser(currentStudentId, new DatabaseService.DatabaseCallback<User>() {
-            @Override
-            public void onCompleted(User student) {
-                if (student == null) {
-                    Toast.makeText(AddLesson.this, "Failed to get student details", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                // Create the Lesson object with proper User and Teacher objects
-                final Lesson lesson = new Lesson(id, student, teacher, selectedDate, hour, details, subject);
+        // Create the Lesson object with proper User and Teacher objects
+        Lesson lesson = new Lesson(id, user, teacher, selectedDate, hour, details, subject);
 
-                submitLesson(lesson);
-            }
+        submitLesson(lesson);
 
-            @Override
-            public void onFailed(Exception e) {
-                Toast.makeText(AddLesson.this, "Failed to fetch student", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
+
+
+
+
 
     // Method to submit the lesson request
     private void submitLesson(Lesson lesson) {
@@ -140,7 +133,7 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
                     public void onCompleted(Void object) {
                         Toast.makeText(AddLesson.this, "Lesson Request Submitted Successfully", Toast.LENGTH_SHORT).show();
                         resetFields();
-                        Intent go = new Intent(AddLesson.this, TeacherHomePage.class);
+                        Intent go = new Intent(AddLesson.this, HomePage.class);
                         startActivity(go);
                     }
 
@@ -164,7 +157,7 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         etstudentname.setText("");
         etteachername.setText("");
         etclassdetails.setText("");
-        subjects.setText("");
+        etSubjects.setText("");
         sphours.setSelection(0);  // Reset spinner to first item
         datePicker.updateDate(2025, 0, 1);  // Reset to default date (e.g., Jan 1, 2025)
     }

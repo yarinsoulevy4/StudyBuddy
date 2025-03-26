@@ -7,6 +7,10 @@ public class Lesson implements Serializable
 
 {
 
+
+    public Lesson() {
+    }
+
     protected String id;
     protected User student; //the student
     protected Teacher teacher ;// the teacher
@@ -59,11 +63,18 @@ public class Lesson implements Serializable
     }
 
     public String getDate() {
-        return date;
+
+
+        return date.substring(8,10)+"/"+ date.substring(5,7)+"/"+ date.substring(0,4);
     }
 
     public void setDate(String date) {
-        this.date = date;
+
+
+
+        this.date=date;
+
+
     }
 
     public String getHour() {

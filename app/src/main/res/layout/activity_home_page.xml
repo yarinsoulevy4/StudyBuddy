@@ -57,6 +57,7 @@
         android:layout_marginBottom="49dp"
         android:backgroundTint="#2A4861"
         android:text="MY NEXT LESSONS"
+        android:onClick="goSchedule"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"

@@ -32,19 +32,19 @@ import com.google.firebase.database.FirebaseDatabase;
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "loginToFireBase";
-    TextView txtLogin;
+
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
 
     String email2, pass2;
-    private FirebaseAuth mAuth;
+
     String admin = "levyarin14@gmail.com";
     String adminpass ="010407";
 
 
 
 
-    public static User theUser;
+    public static User theUser=null;
 
     public static Boolean isAdmin=false;
     public  static  Teacher teacher=null;
@@ -68,7 +68,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
 
 
+
         init_views();
+
 
 
 
@@ -82,8 +84,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         etPasswordLogin = findViewById(R.id.etPasswordlogin);
 
 
+        theUser=SharedPreferencesUtil.getUser(login.this);
 
-        theUser=  SharedPreferencesUtil.getUser(this);
         if(theUser!=null) {
             email2 = theUser.getEmail();
             pass2 = theUser.getPassword();
@@ -97,6 +99,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         email2 = etEmailLogin.getText().toString();
         pass2 = etPasswordLogin.getText().toString();
+        //Toast.makeText(login.this,email2+" ",Toast.LENGTH_LONG).show();
 
         /// Login user
         loginUser(email2, pass2);
@@ -137,16 +140,17 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                         Log.d(TAG, "onCompleted: User data retrieved successfully");
                         /// save the user data to shared preferences
-                        //  SharedPreferencesUtil.saveUser(Login.this, trainee2);
+
                         /// Redirect to main activity and clear back stack to prevent user from going back to login screen
                         Intent mainIntent = new Intent(login.this, TeacherHomePage.class);
                         /// Clear the back stack (clear history) and start the MainActivity
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                        if (teacher != null)
+                        if (teacher != null) {
+                            SharedPreferencesUtil.saveUser(login.this, teacher);
                             startActivity(mainIntent);
 
-
+                        }
                         else {
 
                             databaseService.getUser(uid, new DatabaseService.DatabaseCallback<User>() {
@@ -159,7 +163,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                                     Log.d(TAG, "onCompleted: User data retrieved successfully");
                                     /// save the user data to shared preferences
-                                    //   SharedPreferencesUtil.saveUser(Login.this, coach);
+                                     SharedPreferencesUtil.saveUser(login.this, theUser);
                                     /// Redirect to main activity and clear back stack to prevent user from going back to login screen
                                     Intent mainIntent = new Intent(login.this, HomePage.class);
                                     /// Clear the back stack (clear history) and start the MainActivity
@@ -194,20 +198,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
             }
 
-
-
-
-
-
-
-
-
-
             @Override
             public void onFailed(Exception e) {
                 Log.e(TAG, "onFailed: Failed to log in user", e);
                 /// Show error message to user
-                etEmailLogin.setError("Invalid email or password");
+                etEmailLogin.setError("Invalid email or password"+ email2);
                 etPasswordLogin.requestFocus();
                 /// Sign out the user if failed to retrieve user data
                 /// This is to prevent the user from being logged in again

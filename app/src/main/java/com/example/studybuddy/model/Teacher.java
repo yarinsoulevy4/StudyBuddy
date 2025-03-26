@@ -45,6 +45,9 @@ public class Teacher extends User implements Serializable {
 
     public Teacher(Teacher teacher) {
         super(teacher);
+        this.subject = teacher.getSubject();
+        this.price = teacher.price;
+
 
     }
 

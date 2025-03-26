@@ -260,6 +260,8 @@ public class DatabaseService {
             List<Teacher> teachers = new ArrayList<>();
             task.getResult().getChildren().forEach(dataSnapshot -> {
                 Teacher teacher = dataSnapshot.getValue(Teacher.class);
+
+                teacher=new Teacher(teacher);
                 Log.d(TAG, "Got teacher: " + teacher);
                 teachers.add(teacher);
             });
@@ -300,7 +302,7 @@ public class DatabaseService {
 
     public void submitAddLessonForTeacher(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
 
-        writeData("TeacherLessonSchedule/"+lesson.getTeacher()+"/"+ lesson.getDate().substring(0,4)+"/" +lesson.getDate().substring(5,7)+"/"+lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+        writeData("TeacherLessonSchedule/"+lesson.getTeacher().getId()+"/"+ lesson.getDate().substring(0,4)+"/" +lesson.getDate().substring(5,7)+"/"+lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
 
         // writeData("coaches/"+workout.getCoachId()+  "/workouts/" + workout.getId(), workout, callback);
     }
@@ -310,13 +312,13 @@ public class DatabaseService {
     // New public method to submit a workout request
     public void submitAddLessonForStudent(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
 
-        writeData("StudentLessonSchedule/"+lesson.getTeacher()+"/"+ lesson.getDate().substring(0,4)+"/"+lesson.getDate().substring(5,7)+"/" +lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+        writeData("StudentLessonSchedule/"+lesson.getStudent().getId()+"/"+ lesson.getDate().substring(0,4)+"/"+lesson.getDate().substring(5,7)+"/" +lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
         //  writeData("trainees/"+workout.getTraineeId()+  "/workouts/" + workout.getId(), workout, callback);
     }
 
 
-    public void getTecherLessons( Teacher teacher,@NotNull final DatabaseCallback<List<Lesson>> callback) {
-        readData("teachers/"+teacher.getId()+"/myLessons/" ).get().addOnCompleteListener(task -> {
+    public void getTecherLessons( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
+        readData("TeacherLessonSchedule/"+uid+"/myLessons/" ).get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.e(TAG, "Error getting data", task.getException());
                 callback.onFailed(task.getException());
@@ -346,9 +348,9 @@ public class DatabaseService {
 
 
 
-    public void getLessonForTeacher( String coachId,   @NotNull final DatabaseCallback<List<Lesson>> callback) {
+    public void getLessonForTeacher( String uid,   @NotNull final DatabaseCallback<List<Lesson>> callback) {
 
-        String path="teacherLesson/" + coachId;
+        String path="TeacherLessonSchedule/" + uid;
         DatabaseReference myRef=  readData(path);
 
 
@@ -408,24 +410,55 @@ public class DatabaseService {
 
 
 
-    public void getStudentLessons( User user,@NotNull final DatabaseCallback<List<Lesson>> callback) {
-        readData("Users/"+user.getId()+"/myLessons/" ).get().addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Log.e(TAG, "Error getting data", task.getException());
-                callback.onFailed(task.getException());
-                return;
-            }
-            List<Lesson> lessonList = new ArrayList<>();
-            task.getResult().getChildren().forEach(dataSnapshot -> {
-                Lesson lesson = dataSnapshot.getValue(Lesson.class);
-                Log.d(TAG, "Got lesson: " + lesson);
-                lessonList.add(lesson);
-            });
+    public void getStudentLessons( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
 
-            callback.onCompleted(lessonList);
+        String path = "StudentLessonSchedule/" + uid;
+        DatabaseReference myRef = readData(path);
+
+
+        List<Lesson> lessons = new ArrayList<>();
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Log.d("postSnapshot", "num  is: " + postSnapshot.getKey());
+
+                    for (DataSnapshot dm : postSnapshot.getChildren()) {
+
+                        Log.d("dm", "num  is: " + dm.getKey());
+                        for (DataSnapshot dd : dm.getChildren()) {
+
+
+                            Log.d("dd", "num  is: " + dd.getKey());
+                            for (DataSnapshot value : dd.getChildren()) {
+                                Lesson lesson = value.getValue(Lesson.class);
+
+
+                                lessons.add(lesson);
+                                Log.d("workout", "Value is: " + lesson);
+                            }
+
+
+                        }
+                    }
+
+                }
+
+
+                callback.onCompleted(lessons);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
         });
     }
-
 
 
 }

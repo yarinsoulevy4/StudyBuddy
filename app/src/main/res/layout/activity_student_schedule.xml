@@ -6,34 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87B4D8"
-
-    tools:context=".screens.teacherSchedule">
-
+    tools:context=".screens.StudentSchedule">
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="384dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="357dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="11dp"
         android:text="MY NEXT LESSONS"
         android:textColor="#2E4963"
         android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/lvScheduleTeacher"
+        app:layout_constraintBottom_toTopOf="@+id/lvScheduleStudent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
 
-        android:id="@+id/lvScheduleTeacher"
+        android:id="@+id/lvScheduleStudent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="414dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="353dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

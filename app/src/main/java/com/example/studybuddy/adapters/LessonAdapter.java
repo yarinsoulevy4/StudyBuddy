@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.studybuddy.R;
 import com.example.studybuddy.model.Lesson;
 import com.example.studybuddy.model.Teacher;
+import com.example.studybuddy.screens.teacherSchedule;
 import com.example.studybuddy.services.DatabaseService;
 
 import java.util.List;
@@ -32,10 +33,10 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
             convertView = layoutInflater.inflate(R.layout.one_lesson, parent, false);
         }
 
-        TextView tvDate = convertView.findViewById(R.id.tvDate);
-        TextView tvSubject = convertView.findViewById(R.id.tvSubject);
-        TextView tvHour = convertView.findViewById(R.id.tvHour);
-        TextView tvStudent = convertView.findViewById(R.id.tvStudent);
+        TextView tvDate = convertView.findViewById(R.id.tvDateAdapter);
+        TextView tvSubject = convertView.findViewById(R.id.tvSubjectAdapter);
+        TextView tvHour = convertView.findViewById(R.id.tvHourAdapter);
+        TextView tvStudent = convertView.findViewById(R.id.tvStudentNameAdapter);
 
         Lesson temp = objects.get(position);
         Log.d("LessonAdapter", "Lesson: " + temp.toString());
@@ -44,18 +45,18 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
         tvDate.setText(temp.getDate());
         tvSubject.setText(temp.getSubject());
 
-        DatabaseService.getInstance().getTeacher(temp.getId(), new DatabaseService.DatabaseCallback<Teacher>() {
-            @Override
-            public void onCompleted(Teacher object) {
-                    tvStudent.setText(object.getFname());
 
-            }
+        if (context instanceof teacherSchedule) {
+            Log.d("ContextCheck", "This context is an Activity");
 
-            @Override
-            public void onFailed(Exception e) {
-                Log.e("LessonAdapter", "Failed to fetch teacher", e);
-            }
-        });
+
+
+              tvStudent.setText(temp.getStudent().getFname()+"  "+temp.getStudent().getLname());
+
+        }
+
+
+        else  tvStudent.setText(temp.getTeacher().getFname()+"  "+temp.getTeacher().getLname());
 
         return convertView;
     }

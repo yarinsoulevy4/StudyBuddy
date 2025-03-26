@@ -14,62 +14,59 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.studybuddy.R;
 import com.example.studybuddy.adapters.LessonAdapter;
 import com.example.studybuddy.model.Lesson;
-import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class teacherSchedule extends AppCompatActivity {
+public class StudentSchedule extends AppCompatActivity {
 
-    ListView lvScheduleTeacher;
+    ListView lvScheduleStudent;
     ArrayList<Lesson> lessons = new ArrayList<>();
     LessonAdapter adpSearch1;
 
     private DatabaseService databaseService;
     private AuthenticationService authenticationService;
     String uid;
-    Teacher teacher = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_teacher_schedule);
+        setContentView(R.layout.activity_student_schedule);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         databaseService = DatabaseService.getInstance();
         authenticationService = AuthenticationService.getInstance();
         uid = authenticationService.getCurrentUserId();
 
-        lvScheduleTeacher = findViewById(R.id.lvScheduleTeacher);
+        lvScheduleStudent = findViewById(R.id.lvScheduleStudent);
         adpSearch1 = new LessonAdapter(this, lessons);  // Updated adapter initialization
-        lvScheduleTeacher.setAdapter(adpSearch1);
+        lvScheduleStudent.setAdapter(adpSearch1);
 
-        databaseService.getLessonForTeacher(uid,  new DatabaseService.DatabaseCallback<List<Lesson>>() {
+        databaseService.getLessonForTeacher(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
             @Override
             public void onCompleted(List<Lesson> object) {
-                Log.d("GetCoachSchedule", "Retrieved workouts: " + object.size());
+                Log.d("GetStudentSchedule", "Retrieved lessons: " + object.size());
                 lessons.addAll(object);
                 adpSearch1.notifyDataSetChanged();
 
-                Log.e("lessonsList", lessons.toString());
+                Log.e("lessonslist", lessons.toString());
             }
 
             @Override
             public void onFailed(Exception e) {
-                Log.e("GetTeacherScheduleError", "Error fetching lessons", e);
+                Log.e("GetStudentScheduleError", "Error fetching workouts", e);
                 // Show error message to the user
 
-                Toast.makeText(teacherSchedule.this, "Failed to fetch lessons", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StudentSchedule.this, "Failed to fetch lessons", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-}
 
+}
