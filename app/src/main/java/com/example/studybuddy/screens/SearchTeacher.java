@@ -86,7 +86,6 @@ public class SearchTeacher extends AppCompatActivity {
                 teacherList.addAll(object);
                 teacherAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onFailed(Exception e) {
                 Log.e(TAG, "Failed to load teachers", e);

@@ -1,5 +1,6 @@
 package com.example.studybuddy.screens;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,7 +25,9 @@ import com.example.studybuddy.model.User;
 import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,20 +36,21 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
     Intent takeit;
     Teacher teacher;
     Button btncreate;
+
+    TextView tVStartDate;
     EditText etteachername;
     EditText etstudentname;
     EditText etclassdetails;
     EditText etSubjects;
     Spinner sphours;
-    DatePicker datePicker;
-    public User user = new User();
 
+    public User user = new User();
     private DatabaseService databaseService;
     private AuthenticationService authenticationService;
     private String uid;
-    String details, hour , date , subject ;
+    String details, hour , subject ;
 
-    ArrayList<Lesson> teacherLessons= new ArrayList<>();
+    private String selectedDate="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,9 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         etSubjects = findViewById(R.id.etSubjects);
         sphours = findViewById(R.id.sphours);
         etclassdetails = findViewById(R.id.etlessondetails);
-        datePicker = findViewById(R.id.datePicker);
+
+        tVStartDate=findViewById(R.id.tVStartDate);
+      //  datePicker = findViewById(R.id.datePicker);
 
         btncreate.setOnClickListener(this);
     }
@@ -101,28 +108,25 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         String id = DatabaseService.getInstance().generateLessonId();
-        String zero = "", zero2 = "";
+      //  String zero = "", zero2 = "";
 
-        if ((datePicker.getMonth() + 1) < 10) zero = "0";
-        if ((datePicker.getDayOfMonth()) < 10) zero2 = "0";
+       // if ((datePicker.getMonth() + 1) < 10) zero = "0";  else zero="" ;
+       // if ((datePicker.getDayOfMonth()) < 10) zero2 = "0"  ;  else zero2="";
 
-        String selectedDate = datePicker.getYear() + "/" + zero + (datePicker.getMonth() + 1) + "/" + zero2 + datePicker.getDayOfMonth();
+
+       // String selectedDate = zero2 + datePicker.getDayOfMonth()+"/" + zero + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
         hour = sphours.getSelectedItem().toString();
         details = etclassdetails.getText().toString() + "";
         subject = etSubjects.getText().toString() + "";
 
+        if(!selectedDate.isEmpty()) {
+            // Create the Lesson object with proper User and Teacher objects
+            Lesson lesson = new Lesson(id, user, teacher, selectedDate, hour, details, subject);
 
-        // Create the Lesson object with proper User and Teacher objects
-        Lesson lesson = new Lesson(id, user, teacher, selectedDate, hour, details, subject);
-
-        submitLesson(lesson);
-
+            submitLesson(lesson);
+        }
+        else Toast.makeText(this,"עליך לבחור תאריך",Toast.LENGTH_LONG).show();
     }
-
-
-
-
-
     // Method to submit the lesson request
     private void submitLesson(Lesson lesson) {
         databaseService.submitAddLessonForTeacher(lesson, new DatabaseService.DatabaseCallback<Void>() {
@@ -151,7 +155,6 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-
     // Reset the fields after submission
     private void resetFields() {
         etstudentname.setText("");
@@ -159,7 +162,57 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         etclassdetails.setText("");
         etSubjects.setText("");
         sphours.setSelection(0);  // Reset spinner to first item
-        datePicker.updateDate(2025, 0, 1);  // Reset to default date (e.g., Jan 1, 2025)
+
     }
+
+
+
+
+    public void datePick(View view) {
+
+        openDatePickerDialog();
+    }
+
+    private void openDatePickerDialog() {
+        Calendar calNow = Calendar.getInstance();
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, onDateSetListener,
+                calNow.get(Calendar.YEAR),
+                calNow.get(Calendar.MONTH),
+                calNow.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.setTitle("Choose date");
+        datePickerDialog.show();
+    }
+
+
+    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            Calendar calNow = Calendar.getInstance();
+            Calendar calSet = (Calendar) calNow.clone();
+
+            calSet.set(Calendar.YEAR, year);
+            calSet.set(Calendar.MONTH, month);
+            calSet.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+
+            String zero = "", zero2 = "";
+
+            if ((view.getMonth() + 1) < 10) zero = "0";  else zero="" ;
+            if ((view.getDayOfMonth()) < 10) zero2 = "0"  ;  else zero2="";
+
+
+             selectedDate = zero2 + view.getDayOfMonth()+"/" + zero + (view.getMonth() + 1) + "/" + view.getYear();
+
+          //  SimpleDateFormat sdfSave = new SimpleDateFormat("yyyyMMdd");
+           // String dateSave = sdfSave.format(calSet.getTime());
+            tVStartDate.setText((selectedDate));
+
+        }
+    };
+
+
+
+
 }
 

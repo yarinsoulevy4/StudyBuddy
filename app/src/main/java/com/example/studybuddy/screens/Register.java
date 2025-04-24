@@ -22,12 +22,9 @@ import com.example.studybuddy.utils.SharedPreferencesUtil;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
-
     interface Callback {
         void callback();
     }
-
-
     EditText etfname, etlname, etphone, etemail, etpassword;
     String fname, lname, phone, email, password;
      Button btnRegister;
@@ -66,8 +63,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         btnRegister=findViewById((R.id.btnRegister));
 
         btnRegister.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -105,9 +100,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             Toast.makeText(Register.this,"הסיסמה ארוכה מדי", Toast.LENGTH_LONG).show();
             isValid = false;
         }
-
-
-
         if (isValid) {
             /// Register user
             registerUser(email, password, () -> {
@@ -117,8 +109,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             });
         }
     }
-
-
     /// Register the user
     private void registerUser(String email, String password, Callback callback) {
         Log.d(TAG, "registerUser: Registering user...");
@@ -128,15 +118,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
             @Override
             public void onCompleted(String uid) {
-
                 /// create a new user object
-
-
                 User neuser=new User(uid, fname, lname,phone, email,password);
-
                 /// call the createNewUser method of the database service
                 databaseService.createNewUser(neuser, new DatabaseService.DatabaseCallback<Void>() {
-
                     @Override
                     public void onCompleted(Void object) {
                         Log.d(TAG, "onCompleted: User registered successfully");
@@ -144,14 +129,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         SharedPreferencesUtil.saveUser(Register.this, neuser);
                         Log.d(TAG, "onCompleted: Redirecting to MainActivity");
                         /// Redirect to MainActivity and clear back stack to prevent user from going back to register screen
-
-
-
-
                         Intent goLog = new Intent(getApplicationContext(), RegTorS.class);
                         startActivity(goLog);
                     }
-
                     @Override
                     public void onFailed(Exception e) {
                         Log.e(TAG, "onFailed: Failed to register user", e);
@@ -163,7 +143,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     }
                 });
             }
-
             @Override
             public void onFailed(Exception e) {
                 Log.e(TAG, "onFailed: Failed to register user", e);
@@ -171,10 +150,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(Register.this, "Failed to register user", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-
-
-
 }

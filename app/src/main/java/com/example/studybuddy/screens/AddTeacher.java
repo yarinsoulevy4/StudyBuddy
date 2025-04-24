@@ -35,10 +35,7 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
 
     private EditText etSubjects, etPrice;
    public  User user=new User();
-
-
     private DatabaseService databaseService;
-
     private AuthenticationService authenticationService;
     private String uid;
 
@@ -64,13 +61,11 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(AddTeacher.this, "Teacher " + user.toString(), Toast.LENGTH_SHORT).show();
 
             }
-
             @Override
             public void onFailed(Exception e) {
 
             }
         });
-
     }
 
     @SuppressLint("WrongViewCast")
@@ -93,32 +88,21 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
         if (v == btnCreateTeacher) {
                 registerTecher();
 
-
         }
         }
-
 
         public  void registerTecher(){
 
-
-
             subject=etSubjects.getText().toString();
-
-
             stPrice=etPrice.getText().toString();
             price=Double.parseDouble(stPrice);
 
             // Handle multiple subjects
-
-
             // Create a new Teacher object with the updated constructor
 
             if (user != null) {
 
                 Toast.makeText(AddTeacher.this, "Teacher  222 "+ user.toString(), Toast.LENGTH_SHORT).show();
-
-
-
                 Teacher newTeacher = new Teacher(user, subject, price, 0.0,0.0,0);
 
                 // Save the new teacher to the database
@@ -144,16 +128,9 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
                     }
                 });
 
-
-
-
-
-
-
             }
 
         }
-
 
     // Method to add a new Spinner dynamically
     private void addNewSpinner() {
@@ -178,9 +155,6 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
 
 
     }
-
-
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -190,7 +164,6 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
         }
 
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

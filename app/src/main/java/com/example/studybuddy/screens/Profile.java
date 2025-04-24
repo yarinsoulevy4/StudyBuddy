@@ -18,7 +18,6 @@ import com.example.studybuddy.services.DatabaseService;
 
 
 public class Profile extends AppCompatActivity {
-
     private EditText etEditUserName, etEditUserEmail, etEditUserPhone;
     private Button btnSaveUser;
     private DatabaseService databaseService;
@@ -47,14 +46,12 @@ public class Profile extends AppCompatActivity {
                 currentUser = user;
                 setView(user);
             }
-
             @Override
             public void onFailed(Exception e) {
 
             }
         });
     }
-
     private void setView(User user) {
         etEditUserName.setText(user.getFname() + " " + user.getLname());
         etEditUserEmail.setText(user.getEmail());
@@ -81,9 +78,7 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public void onCompleted(Void v) {
                     Toast.makeText(Profile.this, "User updated successfully", Toast.LENGTH_SHORT).show();
-                    finish(); // חזרה למסך הקודם לאחר שמירת השינויים
                 }
-
                 @Override
                 public void onFailed(Exception e) {
                     Toast.makeText(Profile.this, "Failed to update user", Toast.LENGTH_SHORT).show();

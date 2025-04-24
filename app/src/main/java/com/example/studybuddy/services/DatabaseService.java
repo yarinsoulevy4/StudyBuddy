@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -302,7 +304,7 @@ public class DatabaseService {
 
     public void submitAddLessonForTeacher(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
 
-        writeData("TeacherLessonSchedule/"+lesson.getTeacher().getId()+"/"+ lesson.getDate().substring(0,4)+"/" +lesson.getDate().substring(5,7)+"/"+lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+        writeData("TeacherLessonSchedule/"+lesson.getTeacher().getId()+"/"+ lesson.getDate().substring(6)+"/" +lesson.getDate().substring(3,5)+"/"+lesson.getDate().substring(0,2)+"/"+ lesson.getId(), lesson, callback);
 
         // writeData("coaches/"+workout.getCoachId()+  "/workouts/" + workout.getId(), workout, callback);
     }
@@ -312,7 +314,7 @@ public class DatabaseService {
     // New public method to submit a workout request
     public void submitAddLessonForStudent(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
 
-        writeData("StudentLessonSchedule/"+lesson.getStudent().getId()+"/"+ lesson.getDate().substring(0,4)+"/"+lesson.getDate().substring(5,7)+"/" +lesson.getDate().substring(8)+"/"+ lesson.getId(), lesson, callback);
+        writeData("StudentLessonSchedule/"+lesson.getStudent().getId()+"/"+ lesson.getDate().substring(6)+"/"+lesson.getDate().substring(3,5)+"/" +lesson.getDate().substring(0,2)+"/"+ lesson.getId(), lesson, callback);
         //  writeData("trainees/"+workout.getTraineeId()+  "/workouts/" + workout.getId(), workout, callback);
     }
 
@@ -410,7 +412,7 @@ public class DatabaseService {
 
 
 
-    public void getStudentLessons( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
+    public void getLessonForStudent( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
 
         String path = "StudentLessonSchedule/" + uid;
         DatabaseReference myRef = readData(path);
@@ -421,6 +423,7 @@ public class DatabaseService {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LocalDate currentDate = LocalDate.now();
 
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
@@ -434,10 +437,20 @@ public class DatabaseService {
 
                             Log.d("dd", "num  is: " + dd.getKey());
                             for (DataSnapshot value : dd.getChildren()) {
+
                                 Lesson lesson = value.getValue(Lesson.class);
+                                String stDate= lesson.getDate().substring(6) +"-" +lesson.getDate().substring(3,5)+"-"+lesson.getDate().substring(0,2);
+
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                LocalDate date1 = LocalDate.parse(stDate, formatter);
+
+                                LocalDate date2 = LocalDate.parse(currentDate.toString(), formatter);
 
 
-                                lessons.add(lesson);
+                                    if(date1.isAfter(date2)|| date1.equals(date2)) {
+
+                                            lessons.add(lesson);
+                                }
                                 Log.d("workout", "Value is: " + lesson);
                             }
 

@@ -24,7 +24,6 @@ public class RegTorS extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
     }
     public void GoHome(View view) {
         Intent go = new Intent(getApplicationContext(), HomePage.class);

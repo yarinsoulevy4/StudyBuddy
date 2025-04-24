@@ -32,30 +32,18 @@ import com.google.firebase.database.FirebaseDatabase;
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "loginToFireBase";
-
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
 
     String email2, pass2;
-
     String admin = "levyarin14@gmail.com";
     String adminpass ="010407";
-
-
-
-
     public static User theUser=null;
 
     public static Boolean isAdmin=false;
     public  static  Teacher teacher=null;
-
-
-
-
-
     private AuthenticationService authenticationService;
     private DatabaseService databaseService;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +54,13 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         authenticationService = AuthenticationService.getInstance();
         databaseService=DatabaseService.getInstance();
 
-
-
-
         init_views();
-
-
-
-
-
     }
-
     private void init_views() {
         btnLogin = findViewById(R.id.btnlogin);
         btnLogin.setOnClickListener(this);
         etEmailLogin = findViewById(R.id.etemaillogin);
         etPasswordLogin = findViewById(R.id.etPasswordlogin);
-
-
         theUser=SharedPreferencesUtil.getUser(login.this);
 
         if(theUser!=null) {
@@ -103,7 +80,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
         /// Login user
         loginUser(email2, pass2);
-
 
     }
 
@@ -169,8 +145,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                                     /// Clear the back stack (clear history) and start the MainActivity
                                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(mainIntent);
-
-
                                 }
 
                                 @Override
@@ -180,10 +154,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                                 }
                             });
-
-
                         }
-
                     }
 
                     @Override
@@ -191,11 +162,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                         teacher = null;
 
                         //getTeacher
-
-
                     }
                 });
-
             }
 
             @Override
@@ -211,5 +179,4 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             }
         });
     }
-
 }

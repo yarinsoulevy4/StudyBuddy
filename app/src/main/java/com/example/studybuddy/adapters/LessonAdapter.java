@@ -49,10 +49,7 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
         if (context instanceof teacherSchedule) {
             Log.d("ContextCheck", "This context is an Activity");
 
-
-
               tvStudent.setText(temp.getStudent().getFname()+"  "+temp.getStudent().getLname());
-
         }
 
 

@@ -25,26 +25,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
-
-
-
     public void goRegister(View view) {
         // Create an Intent to navigate to the Register activity
         Intent go = new Intent(getApplicationContext(), Register.class);
         startActivity(go); // Start the activity
     }
-
-
     public void goLogin(View view)
     {
         Intent go = new Intent(getApplicationContext(),login.class);
         startActivity(go);
-
     }
     public void goAboutUs(View view)
     {
         Intent go= new Intent(getApplicationContext(), AboutUs.class);
         startActivity(go);
-
     }
 }

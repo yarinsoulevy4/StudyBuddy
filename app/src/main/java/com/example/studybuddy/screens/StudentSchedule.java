@@ -48,7 +48,7 @@ public class StudentSchedule extends AppCompatActivity {
         adpSearch1 = new LessonAdapter(this, lessons);  // Updated adapter initialization
         lvScheduleStudent.setAdapter(adpSearch1);
 
-        databaseService.getLessonForTeacher(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
+        databaseService.getLessonForStudent(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
             @Override
             public void onCompleted(List<Lesson> object) {
                 Log.d("GetStudentSchedule", "Retrieved lessons: " + object.size());

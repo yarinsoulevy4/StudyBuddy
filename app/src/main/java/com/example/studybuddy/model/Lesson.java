@@ -63,20 +63,13 @@ public class Lesson implements Serializable
     }
 
     public String getDate() {
-
-
-        return date.substring(8,10)+"/"+ date.substring(5,7)+"/"+ date.substring(0,4);
+        return date;
     }
 
     public void setDate(String date) {
-
-
-
         this.date=date;
 
-
     }
-
     public String getHour() {
         return hour;
     }

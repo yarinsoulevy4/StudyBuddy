@@ -10,16 +10,18 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="259dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="76dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="76dp"
         android:layout_marginBottom="10dp"
         android:scrollbarSize="20dp"
         android:text="ADD LESSON"
         android:textColor="#2A4861"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/etcteachername"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,27 +29,31 @@
         android:id="@+id/etcteachername"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="154dp"
         android:ems="10"
         android:hint="Teacher Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etcstudentname"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="@+id/etcstudentname"
         app:layout_constraintStart_toStartOf="@+id/etcstudentname"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Calendar text color -->
 
 
     <EditText
         android:id="@+id/etcstudentname"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="23dp"
         android:layout_marginBottom="7dp"
         android:ems="10"
         android:hint="Student Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/sphours"
+        app:layout_constraintEnd_toEndOf="@+id/sphours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etcteachername" />
 
@@ -56,7 +62,7 @@
         android:layout_width="215dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Details"
         android:inputType="textPersonName"
@@ -68,47 +74,71 @@
         android:id="@+id/btncreate"
         android:layout_width="130dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="117dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#2A4861"
         android:text="CREATE LESSON"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etlessondetails"
+        app:layout_constraintStart_toEndOf="@+id/etlessondetails"
         app:layout_constraintTop_toBottomOf="@+id/etlessondetails" />
+
 
     <Spinner
         android:id="@+id/sphours"
-        android:layout_width="0dp"
+        android:layout_width="246dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="31dp"
         android:entries="@array/hoursArr"
-        app:layout_constraintBottom_toTopOf="@+id/datePicker"
-        app:layout_constraintEnd_toEndOf="@+id/btncreate"
-        app:layout_constraintStart_toStartOf="@+id/etcstudentname"
+        app:layout_constraintBottom_toTopOf="@+id/tVStartDate"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etcstudentname" />
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="295dp"
-        android:layout_height="215dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
-        android:background="#B1B0E0"
-        android:calendarTextColor="#ADDFEF"
-        app:layout_constraintBottom_toTopOf="@+id/etSubjects"
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="389dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="Start Date:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tVStartDate"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etcteachername" />
+
+    <TextView
+        android:id="@+id/tVStartDate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="185dp"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:hint="set start date"
+        android:onClick="datePick"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etSubjects"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/sphours" />
 
     <EditText
         android:id="@+id/etSubjects"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Subject"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/etlessondetails"
         app:layout_constraintEnd_toEndOf="@+id/etlessondetails"
         app:layout_constraintStart_toStartOf="@+id/etlessondetails"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/tVStartDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,6 @@ public class teacherSchedule extends AppCompatActivity {
     private AuthenticationService authenticationService;
     String uid;
     Teacher teacher = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,6 @@ public class teacherSchedule extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         databaseService = DatabaseService.getInstance();
         authenticationService = AuthenticationService.getInstance();
         uid = authenticationService.getCurrentUserId();
@@ -60,7 +58,6 @@ public class teacherSchedule extends AppCompatActivity {
 
                 Log.e("lessonsList", lessons.toString());
             }
-
             @Override
             public void onFailed(Exception e) {
                 Log.e("GetTeacherScheduleError", "Error fetching lessons", e);
