@@ -2,28 +2,23 @@ package com.example.studybuddy.model;
 
 import java.io.Serializable;
 
-public class Lesson implements Serializable
+public class Lesson implements Serializable {
+    protected String id;
+    protected User student; //the student
+    protected Teacher teacher;// the teacher
+    protected String subject;// subject of the lesson
+    protected String date;
+    protected String hour;
 
-
-{
+    protected String details;// little summary of the lesson- progress
+    protected Boolean status;
 
 
     public Lesson() {
     }
 
-    protected String id;
-    protected User student; //the student
-    protected Teacher teacher ;// the teacher
-    protected  String subject;// subject of the lesson
-    protected  String date;
-    protected  String hour;
 
-    protected  String details;// little summary of the lesson- progress
-
-
-
-
-    public Lesson(String id, User student, Teacher teacher, String date, String hour, String details, String subject) {
+    public Lesson(String id, User student, Teacher teacher, String date, String hour, String details, String subject, Boolean status) {
         this.id = id;
         this.student = student;
         this.teacher = teacher;
@@ -32,10 +27,8 @@ public class Lesson implements Serializable
         this.hour = hour;
 
         this.details = details;
+        this.status = status;
     }
-
-
-
 
 
     public User getStudent() {
@@ -67,9 +60,10 @@ public class Lesson implements Serializable
     }
 
     public void setDate(String date) {
-        this.date=date;
+        this.date = date;
 
     }
+
     public String getHour() {
         return hour;
     }
@@ -77,7 +71,6 @@ public class Lesson implements Serializable
     public void setHour(String hour) {
         this.hour = hour;
     }
-
 
 
     public String getDetails() {
@@ -96,6 +89,14 @@ public class Lesson implements Serializable
         this.id = id;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
@@ -105,8 +106,8 @@ public class Lesson implements Serializable
                 ", subject='" + subject + '\'' +
                 ", date='" + date + '\'' +
                 ", hour='" + hour + '\'' +
-
                 ", details='" + details + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

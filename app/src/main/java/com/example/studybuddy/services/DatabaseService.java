@@ -471,6 +471,23 @@ public class DatabaseService {
 
             }
         });
+
+        public void updateLessonStatus(@NotNull final Lesson lesson, boolean status, @Nullable final DatabaseCallback<Void> callback) {
+            lesson.setStatus(status);
+
+            // Update for teacher
+            writeData("TeacherLessonSchedule/" + lesson.getTeacher().getId() + "/" + lesson.getDate().substring(6) + "/" +
+                    lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
+
+            // Update for student
+            writeData("StudentLessonSchedule/" + lesson.getStudent().getId() + "/" + lesson.getDate().substring(6) + "/" +
+                    lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
+
+            // Optional: update in user profiles too, if needed
+            writeData("Users/" + lesson.getStudent().getId() + "/myLessons/" + lesson.getId(), lesson, null);
+            writeData("teachers/" + lesson.getTeacher().getId() + "/myLessons/" + lesson.getId(), lesson, null);
+        }
+
     }
 
 

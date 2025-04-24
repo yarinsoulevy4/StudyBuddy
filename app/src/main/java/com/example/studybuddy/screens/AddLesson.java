@@ -121,7 +121,7 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
 
         if(!selectedDate.isEmpty()) {
             // Create the Lesson object with proper User and Teacher objects
-            Lesson lesson = new Lesson(id, user, teacher, selectedDate, hour, details, subject);
+            Lesson lesson = new Lesson(id, user, teacher, selectedDate, hour, details, subject, null);
 
             submitLesson(lesson);
         }
