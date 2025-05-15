@@ -9,72 +9,87 @@
         android:id="@+id/tvStudentNameAdapter"
         android:layout_width="138dp"
         android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="name"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="6dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDateAdapter"
         android:layout_width="114dp"
         android:layout_height="39dp"
+        android:layout_marginStart="18dp"
         android:text="date"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="6dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvStudentNameAdapter"
+        app:layout_constraintStart_toEndOf="@+id/tvStudentNameAdapter"
+        app:layout_constraintTop_toTopOf="@+id/tvStudentNameAdapter" />
 
     <TextView
         android:id="@+id/tvHourAdapter"
         android:layout_width="90dp"
         android:layout_height="35dp"
 
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="4dp"
         android:text="hour"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="296dp"
-        tools:layout_editor_absoluteY="6dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvDateAdapter"
+        app:layout_constraintStart_toEndOf="@+id/tvDateAdapter"
+        app:layout_constraintTop_toTopOf="@+id/tvDateAdapter" />
 
     <TextView
         android:id="@+id/tvSubjectAdapter"
         android:layout_width="383dp"
         android:layout_height="46dp"
+        android:layout_marginTop="7dp"
         android:text="subjects"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="52dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvStudentNameAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/tvStudentNameAdapter" />
 
     <Button
         android:id="@+id/btAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:backgroundTint="#2A4861"
         android:text="ACCEPT"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="116dp" />
+        app:layout_constraintStart_toStartOf="@+id/tvSubjectAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubjectAdapter" />
 
     <Button
         android:id="@+id/btDecline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:backgroundTint="#2A4861"
         android:text="DECLINE"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="116dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/btAccept"
+        app:layout_constraintStart_toEndOf="@+id/btAccept"
+        app:layout_constraintTop_toTopOf="@+id/btAccept" />
 
     <Button
         android:id="@+id/btDetails"
         android:layout_width="107dp"
         android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
         android:backgroundTint="#2A4861"
         android:text="DETAILS"
-        tools:layout_editor_absoluteX="229dp"
-        tools:layout_editor_absoluteY="119dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/btDecline"
+        app:layout_constraintStart_toEndOf="@+id/btDecline"
+        app:layout_constraintTop_toTopOf="@+id/btDecline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
