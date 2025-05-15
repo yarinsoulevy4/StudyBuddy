@@ -439,7 +439,7 @@ public class DatabaseService {
                             for (DataSnapshot value : dd.getChildren()) {
 
                                 Lesson lesson = value.getValue(Lesson.class);
-                                String stDate= lesson.getDate().substring(6) +"-" +lesson.getDate().substring(3,5)+"-"+lesson.getDate().substring(0,2);
+                                String stDate = lesson.getDate().substring(6) + "-" + lesson.getDate().substring(3, 5) + "-" + lesson.getDate().substring(0, 2);
 
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                                 LocalDate date1 = LocalDate.parse(stDate, formatter);
@@ -447,9 +447,9 @@ public class DatabaseService {
                                 LocalDate date2 = LocalDate.parse(currentDate.toString(), formatter);
 
 
-                                    if(date1.isAfter(date2)|| date1.equals(date2)) {
+                                if (date1.isAfter(date2) || date1.equals(date2)) {
 
-                                            lessons.add(lesson);
+                                    lessons.add(lesson);
                                 }
                                 Log.d("workout", "Value is: " + lesson);
                             }
@@ -471,6 +471,7 @@ public class DatabaseService {
 
             }
         });
+    }
 
         public void updateLessonStatus(@NotNull final Lesson lesson, boolean status, @Nullable final DatabaseCallback<Void> callback) {
             lesson.setStatus(status);
@@ -491,4 +492,4 @@ public class DatabaseService {
     }
 
 
-}
+
