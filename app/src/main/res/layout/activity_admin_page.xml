@@ -26,9 +26,9 @@
         android:backgroundTint="#2A4861"
         android:text="TEACHER USERS LIST"
 
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="214dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="267dp" />
 
     <Button
         android:id="@+id/btnTuser"
@@ -36,19 +36,9 @@
         android:layout_height="100dp"
         android:backgroundTint="#2A4861"
         android:text="USERS LIST"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="114dp"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnlessons"
-        android:layout_width="240dp"
-        android:layout_height="100dp"
-        android:backgroundTint="#2A4861"
-        android:text="WATCH LESSONS HISTORY"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="315dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="159dp" />
 
     <ImageView
         android:id="@+id/iv"

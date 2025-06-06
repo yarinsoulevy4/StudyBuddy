@@ -1,8 +1,10 @@
 package com.example.studybuddy.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,7 @@ import com.example.studybuddy.services.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import androidx.appcompat.widget.SearchView;
 
 public class SearchTeacher extends AppCompatActivity {
@@ -54,7 +57,14 @@ public class SearchTeacher extends AppCompatActivity {
 
         // Setup RecyclerView
         teacherList = new ArrayList<>();
-        teacherAdapter = new TeacherAdapter(teacherList, this);
+        teacherAdapter = new TeacherAdapter(teacherList, new TeacherAdapter.OnTeacherListener() {
+            @Override
+            public void onClick(Teacher teacher) {
+                Intent go = new Intent(SearchTeacher.this, AddLesson.class);
+                go.putExtra("teacher", teacher);
+                startActivity(go);
+            }
+        });
         rcTeacher.setLayoutManager(new LinearLayoutManager(this));
         rcTeacher.setAdapter(teacherAdapter);
 
@@ -82,10 +92,9 @@ public class SearchTeacher extends AppCompatActivity {
             @Override
             public void onCompleted(List<Teacher> object) {
                 Log.d(TAG, "Teachers loaded: " + object);
-                teacherList.clear();
-                teacherList.addAll(object);
-                teacherAdapter.notifyDataSetChanged();
+                teacherAdapter.setTeacherList(object);
             }
+
             @Override
             public void onFailed(Exception e) {
                 Log.e(TAG, "Failed to load teachers", e);

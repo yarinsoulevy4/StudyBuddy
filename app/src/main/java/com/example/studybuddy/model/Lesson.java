@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Lesson implements Serializable {
     protected String id;
-    protected User student; //the student
-    protected Teacher teacher;// the teacher
+    protected String studentId; //the student
+    protected String teacherId;// the teacher
     protected String subject;// subject of the lesson
     protected String date;
     protected String hour;
@@ -18,34 +18,45 @@ public class Lesson implements Serializable {
     }
 
 
+    public Lesson(String id, String studentId, String teacherId, String subject, String hour, String details, String date, Boolean status) {
+        this.id = id;
+        this.studentId = studentId;
+        this.teacherId = teacherId;
+        this.subject = subject;
+        this.hour = hour;
+        this.details = details;
+        this.date = date;
+        this.status = status;
+    }
+
     public Lesson(String id, User student, Teacher teacher, String date, String hour, String details, String subject, Boolean status) {
         this.id = id;
-        this.student = student;
-        this.teacher = teacher;
+        this.studentId = studentId;
+        this.teacherId = teacherId;
         this.subject = subject;
         this.date = date;
         this.hour = hour;
-
         this.details = details;
         this.status = status;
     }
 
 
-    public User getStudent() {
-        return student;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public void setStudent(User student) {
-        this.student = student;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
+
 
     public String getSubject() {
         return subject;
@@ -101,8 +112,8 @@ public class Lesson implements Serializable {
     public String toString() {
         return "Lesson{" +
                 "id='" + id + '\'' +
-                ", student=" + student +
-                ", teacher=" + teacher +
+                ", studentId='" + studentId + '\'' +
+                ", teacherId='" + teacherId + '\'' +
                 ", subject='" + subject + '\'' +
                 ", date='" + date + '\'' +
                 ", hour='" + hour + '\'' +

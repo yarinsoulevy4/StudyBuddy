@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
         });
     }
     private void setView(User user) {
-        etEditUserName.setText(user.getFname() + " " + user.getLname());
+        etEditUserName.setText(user.getFullName());
         etEditUserEmail.setText(user.getEmail());
         etEditUserPhone.setText(user.getPhone());
 

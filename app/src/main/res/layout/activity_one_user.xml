@@ -7,7 +7,7 @@
     android:layout_height="150dp"
     android:background="#87B4D8"
     android:padding="10dp"
-    tools:context=".one_user">
+    tools:context=".screens.login">
 
     <TextView
         android:id="@+id/tvFname"

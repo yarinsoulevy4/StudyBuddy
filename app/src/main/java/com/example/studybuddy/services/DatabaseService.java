@@ -34,10 +34,10 @@ public class DatabaseService {
     /// @see DatabaseCallback#onFailed(Exception)
     public interface DatabaseCallback<T> {
         /// called when the operation is completed successfully
-        void onCompleted(T object);
+        public void onCompleted(T object);
 
         /// called when the operation fails with an exception
-        void onFailed(Exception e);
+        public void onFailed(Exception e);
     }
 
     /// the instance of this class
@@ -190,12 +190,7 @@ public class DatabaseService {
     /// @return void
     /// @see DatabaseCallback
     /// @see Lesson
-    public void createNewLesson(@NotNull final Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
-        writeData(  "teachers/"+lesson.getTeacher().getId()+"/myLessons/" + lesson.getId(), lesson, callback);
-        writeData(  "Users/" + lesson.getStudent().getId()+"/myLessons/" + lesson.getId(), lesson, callback);
 
-
-    }
 
 
 
@@ -302,20 +297,9 @@ public class DatabaseService {
     }
 
 
-    public void submitAddLessonForTeacher(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
+    public void CreateLesson(Lesson lesson, DatabaseCallback<Void> callback){
+        writeData("Lessons/"+lesson.getId(), lesson, callback);
 
-        writeData("TeacherLessonSchedule/"+lesson.getTeacher().getId()+"/"+ lesson.getDate().substring(6)+"/" +lesson.getDate().substring(3,5)+"/"+lesson.getDate().substring(0,2)+"/"+ lesson.getId(), lesson, callback);
-
-        // writeData("coaches/"+workout.getCoachId()+  "/workouts/" + workout.getId(), workout, callback);
-    }
-
-
-
-    // New public method to submit a workout request
-    public void submitAddLessonForStudent(Lesson lesson, @Nullable final DatabaseCallback<Void> callback) {
-
-        writeData("StudentLessonSchedule/"+lesson.getStudent().getId()+"/"+ lesson.getDate().substring(6)+"/"+lesson.getDate().substring(3,5)+"/" +lesson.getDate().substring(0,2)+"/"+ lesson.getId(), lesson, callback);
-        //  writeData("trainees/"+workout.getTraineeId()+  "/workouts/" + workout.getId(), workout, callback);
     }
 
 
@@ -414,79 +398,51 @@ public class DatabaseService {
 
     public void getLessonForStudent( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
 
-        String path = "StudentLessonSchedule/" + uid;
-        DatabaseReference myRef = readData(path);
-
-
-        List<Lesson> lessons = new ArrayList<>();
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        getDataList("lessons", Lesson.class, new DatabaseCallback<List<Lesson>>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                LocalDate currentDate = LocalDate.now();
-
-
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Log.d("postSnapshot", "num  is: " + postSnapshot.getKey());
-
-                    for (DataSnapshot dm : postSnapshot.getChildren()) {
-
-                        Log.d("dm", "num  is: " + dm.getKey());
-                        for (DataSnapshot dd : dm.getChildren()) {
-
-
-                            Log.d("dd", "num  is: " + dd.getKey());
-                            for (DataSnapshot value : dd.getChildren()) {
-
-                                Lesson lesson = value.getValue(Lesson.class);
-                                String stDate = lesson.getDate().substring(6) + "-" + lesson.getDate().substring(3, 5) + "-" + lesson.getDate().substring(0, 2);
-
-                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                                LocalDate date1 = LocalDate.parse(stDate, formatter);
-
-                                LocalDate date2 = LocalDate.parse(currentDate.toString(), formatter);
-
-
-                                if (date1.isAfter(date2) || date1.equals(date2)) {
-
-                                    lessons.add(lesson);
-                                }
-                                Log.d("workout", "Value is: " + lesson);
-                            }
-
-
-                        }
-                    }
-
-                }
-
-
-                callback.onCompleted(lessons);
-
+            public void onCompleted(List<Lesson> workouts) {
+                workouts.removeIf(workout -> !workout.getStudentId().equals(uid));
+                callback.onCompleted(workouts);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
+            public void onFailed(Exception e) {
+                callback.onFailed(e);
             }
         });
     }
 
-        public void updateLessonStatus(@NotNull final Lesson lesson, boolean status, @Nullable final DatabaseCallback<Void> callback) {
+    private <T> void getDataList(@NotNull final String path, @NotNull final Class<T> clazz, @NotNull final DatabaseCallback<List<T>> callback) {
+        readData(path).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Error getting data", task.getException());
+                callback.onFailed(task.getException());
+                return;
+            }
+            List<T> tList = new ArrayList<>();
+            task.getResult().getChildren().forEach(dataSnapshot -> {
+                T t = dataSnapshot.getValue(clazz);
+                tList.add(t);
+            });
+
+            callback.onCompleted(tList);
+        });
+    }
+
+    public void updateLessonStatus(@NotNull final Lesson lesson, boolean status, @Nullable final DatabaseCallback<Void> callback) {
             lesson.setStatus(status);
 
             // Update for teacher
-            writeData("TeacherLessonSchedule/" + lesson.getTeacher().getId() + "/" + lesson.getDate().substring(6) + "/" +
+            writeData("TeacherLessonSchedule/" + lesson.getTeacherId() + "/" + lesson.getDate().substring(6) + "/" +
                     lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
 
             // Update for student
-            writeData("StudentLessonSchedule/" + lesson.getStudent().getId() + "/" + lesson.getDate().substring(6) + "/" +
+            writeData("StudentLessonSchedule/" + lesson.getStudentId() + "/" + lesson.getDate().substring(6) + "/" +
                     lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
 
             // Optional: update in user profiles too, if needed
-            writeData("Users/" + lesson.getStudent().getId() + "/myLessons/" + lesson.getId(), lesson, null);
-            writeData("teachers/" + lesson.getTeacher().getId() + "/myLessons/" + lesson.getId(), lesson, null);
+            writeData("Users/" + lesson.getStudentId() + "/myLessons/" + lesson.getId(), lesson, null);
+            writeData("teachers/" + lesson.getTeacherId() + "/myLessons/" + lesson.getId(), lesson, null);
         }
 
     }

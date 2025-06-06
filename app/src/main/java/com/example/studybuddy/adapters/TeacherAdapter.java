@@ -8,15 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studybuddy.R;
 import com.example.studybuddy.model.Teacher;
-import com.example.studybuddy.screens.AddLesson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +22,17 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
 
     private final List<Teacher> teacherList;  // Original list
      // Filtered list for search
-    private final Context context;
 
-    public TeacherAdapter(List<Teacher> teacherList, Context context) {
+    private final OnTeacherListener onTeacherListener;
+
+
+    public interface OnTeacherListener{
+        public void onClick(Teacher teacher);
+    }
+
+    public TeacherAdapter(List<Teacher> teacherList, OnTeacherListener onTeacherListener) {
         this.teacherList = teacherList;
-
-        this.context = context;
+        this.onTeacherListener = onTeacherListener;
     }
 
     @NonNull
@@ -51,12 +53,15 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
         holder.tvPrice.setText(String.valueOf(teacher.getPrice()));
         holder.tvSubject.setText(teacher.getSubject());
 
-        holder.relativeLayout.setOnClickListener(view -> {
-            Toast.makeText(view.getContext(), "Selected: " + teacher.getFname(), Toast.LENGTH_SHORT).show();
-            Intent go = new Intent(view.getContext(), AddLesson.class);
-            go.putExtra("teacher", teacher);
-            context.startActivity(go);
+        holder.itemView.setOnClickListener(view -> {
+            onTeacherListener.onClick(teacher);
         });
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList.clear();
+        this.teacherList.addAll(teacherList);
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -112,7 +117,6 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
     // ViewHolder for the teacher item
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView tvName, tvPrice, tvSubject, tvRate;
-        public final ConstraintLayout relativeLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -120,7 +124,6 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
             tvPrice = itemView.findViewById(R.id.tvTPrice);
             tvRate = itemView.findViewById(R.id.tvTRate);
             tvName = itemView.findViewById(R.id.tvTName);
-            relativeLayout = itemView.findViewById(R.id.clT);
         }
     }
 }

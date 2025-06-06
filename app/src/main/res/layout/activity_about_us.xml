@@ -20,4 +20,41 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="376dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="187dp"
+        android:text="Study Buddy was created to make it easier for students and teachers to connect and schedule lessons. Whether it’s tutoring, extra help, or skill-building, our goal is to simplify the process and save time for everyone.
+
+We built this app because we saw how hard it can be to coordinate lessons, especially with busy schedules. Study Buddy is here to take the stress out of planning and help students focus on learning.
+
+"
+        android:textColor="#2A4861"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+
+        android:layout_marginBottom="96dp"
+        android:text="Simple. Smart. Supportive."
+        android:textColor="#2A4861"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
