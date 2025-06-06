@@ -49,35 +49,9 @@ public class teacherSchedule extends AppCompatActivity {
         uid = authenticationService.getCurrentUserId();
 
         lvScheduleTeacher = findViewById(R.id.lvScheduleTeacher);
-        adpSearch1 = new LessonAdapter(this, new ArrayList<>(), new LessonAdapter.OnItemLesson() {
-            @Override
-            public boolean isShowAccept() {
-                return true;
-            }
 
-            @Override
-            public boolean isShowReject() {
-                return true;
-            }
 
-            @Override
-            public void onAccept(Lesson lesson) {
 
-            }
-
-            @Override
-            public void onReject(Lesson lesson) {
-
-            }
-
-            @Override
-            public void onDetails(Lesson lesson) {
-                Intent intent = new Intent(teacherSchedule.this, LessonProfile.class);
-                intent.putExtra("lesson", lesson);
-                startActivity(intent);
-            }
-        });  // Updated adapter initialization
-        lvScheduleTeacher.setAdapter(adpSearch1);
 
         getDataFromDB();
     }
@@ -85,9 +59,50 @@ public class teacherSchedule extends AppCompatActivity {
     private void getDataFromDB() {
         databaseService.getLessonForTeacher(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
             @Override
-            public void onCompleted(List<Lesson> lessons) {
+            public void onCompleted(List<Lesson> lessonList) {
                 Log.d("GetCoachSchedule", "Retrieved lessons: " + lessons.size());
-                adpSearch1.setLessonList(lessons);
+
+
+
+                for(int i=0; i< lessonList.size(); i++)
+                    lessons.add(lessonList.get(i));
+
+                if(lessons.isEmpty())
+                    Log.d("joe", "hiu");
+
+
+                adpSearch1 = new LessonAdapter(teacherSchedule.this, lessons, new LessonAdapter.OnItemLesson() {
+                    @Override
+                    public boolean isShowAccept(Lesson lesson) {
+                        return lesson.getStatus() == null;
+                    }
+
+                    @Override
+                    public boolean isShowReject(Lesson lesson) {
+                        return lesson.getStatus() == null;
+                    }
+
+                    @Override
+                    public void onAccept(Lesson lesson) {
+                        lesson.setStatus(true);
+                        updateLesson(lesson);
+                    }
+
+                    @Override
+                    public void onReject(Lesson lesson) {
+                        lesson.setStatus(false);
+                        updateLesson(lesson);
+                    }
+
+                    @Override
+                    public void onDetails(Lesson lesson) {
+                        Intent intent = new Intent(teacherSchedule.this, LessonProfile.class);
+                        intent.putExtra("lesson", lesson);
+                        startActivity(intent);
+                    }
+                });  // Updated adapter initialization
+
+                 lvScheduleTeacher.setAdapter(adpSearch1);
             }
 
             @Override
@@ -102,6 +117,24 @@ public class teacherSchedule extends AppCompatActivity {
             @Override
             public void onCompleted(List<User> users) {
                 adpSearch1.setStudentList(users);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+    }
+
+    private void updateLesson(Lesson lesson) {
+        databaseService.CreateLesson(lesson, new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+                Toast.makeText(teacherSchedule.this, "lesson was updated", Toast.LENGTH_SHORT).show();
+                if (lesson.getStatus() == false) {
+                    lessons.remove(lesson);
+                }
+                adpSearch1.notifyDataSetChanged();
             }
 
             @Override

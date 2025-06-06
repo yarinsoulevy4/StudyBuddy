@@ -1,6 +1,7 @@
 package com.example.studybuddy.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Lesson implements Serializable {
     protected String id;
@@ -120,5 +121,18 @@ public class Lesson implements Serializable {
                 ", details='" + details + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lesson lesson = (Lesson) o;
+        return Objects.equals(id, lesson.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -2,22 +2,15 @@ package com.example.studybuddy.services;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.example.studybuddy.model.Lesson;
 import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.model.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -180,8 +173,6 @@ public class DatabaseService {
     }
 
 
-
-
     /// create a new lesson in the database
     /// @param lesson the lesson object to create
     /// @param callback the callback to call when the operation is completed
@@ -190,9 +181,6 @@ public class DatabaseService {
     /// @return void
     /// @see DatabaseCallback
     /// @see Lesson
-
-
-
 
 
     /// get a teacher from the database
@@ -258,7 +246,7 @@ public class DatabaseService {
             task.getResult().getChildren().forEach(dataSnapshot -> {
                 Teacher teacher = dataSnapshot.getValue(Teacher.class);
 
-                teacher=new Teacher(teacher);
+                teacher = new Teacher(teacher);
                 Log.d(TAG, "Got teacher: " + teacher);
                 teachers.add(teacher);
             });
@@ -266,7 +254,6 @@ public class DatabaseService {
             callback.onCompleted(teachers);
         });
     }
-
 
 
     /// get all the users from the database
@@ -297,14 +284,14 @@ public class DatabaseService {
     }
 
 
-    public void CreateLesson(Lesson lesson, DatabaseCallback<Void> callback){
-        writeData("Lessons/"+lesson.getId(), lesson, callback);
+    public void CreateLesson(Lesson lesson, DatabaseCallback<Void> callback) {
+        writeData("Lessons/" + lesson.getId(), lesson, callback);
 
     }
 
 
-    public void getTecherLessons( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
-        readData("TeacherLessonSchedule/"+uid+"/myLessons/" ).get().addOnCompleteListener(task -> {
+    public void getTecherLessons(String uid, @NotNull final DatabaseCallback<List<Lesson>> callback) {
+        readData("TeacherLessonSchedule/" + uid + "/myLessons/").get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.e(TAG, "Error getting data", task.getException());
                 callback.onFailed(task.getException());
@@ -327,76 +314,36 @@ public class DatabaseService {
             callback.onCompleted(lessonList);
         });
     }
+
     public void updateUser(User currentUser, DatabaseCallback<Void> databaseCallback) {
         createNewUser(currentUser, databaseCallback);
     }
 
 
+    public void getLessonForTeacher(String uid, @NotNull final DatabaseCallback<List<Lesson>> callback) {
 
-
-    public void getLessonForTeacher( String uid,   @NotNull final DatabaseCallback<List<Lesson>> callback) {
-
-        String path="TeacherLessonSchedule/" + uid;
-        DatabaseReference myRef=  readData(path);
-
-
-
-
-
+        String path = "/Lessons/";
         List<Lesson> lessons = new ArrayList<>();
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Log.d("postSnapshot", "num  is: " + postSnapshot.getKey());
-
-                    for (DataSnapshot dm : postSnapshot.getChildren()) {
-
-                        Log.d("dm", "num  is: " + dm.getKey());
-                        for (DataSnapshot dd : dm.getChildren()) {
-
-
-                            Log.d("dd", "num  is: " + dd.getKey());
-                            for (DataSnapshot value : dd.getChildren()) {
-                                Lesson lesson = value.getValue(Lesson.class);
-
-
-                                lessons.add(lesson);
-                                Log.d("workout", "Value is: " + lesson);
-                            }
-
-
-                        }
-                    }
-
-                }
-
-
-                callback.onCompleted(lessons);
-
+        readData(path).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Error getting data", task.getException());
+                callback.onFailed(task.getException());
+                return;
+            } else {
+                task.getResult().getChildren().forEach(dataSnapshot -> {
+                    Lesson lesson = dataSnapshot.getValue(Lesson.class);
+                    Log.d(TAG, "Got lesson: " + lesson);
+                    lessons.add(lesson);
+                });
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-            }
+            callback.onCompleted(lessons);
         });
-
-
     }
 
 
-
-
-
-
-
-    public void getLessonForStudent( String uid,@NotNull final DatabaseCallback<List<Lesson>> callback) {
+    public void getLessonForStudent(String uid, @NotNull final DatabaseCallback<List<Lesson>> callback) {
 
         getDataList("lessons", Lesson.class, new DatabaseCallback<List<Lesson>>() {
             @Override
@@ -428,24 +375,7 @@ public class DatabaseService {
             callback.onCompleted(tList);
         });
     }
-
-    public void updateLessonStatus(@NotNull final Lesson lesson, boolean status, @Nullable final DatabaseCallback<Void> callback) {
-            lesson.setStatus(status);
-
-            // Update for teacher
-            writeData("TeacherLessonSchedule/" + lesson.getTeacherId() + "/" + lesson.getDate().substring(6) + "/" +
-                    lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
-
-            // Update for student
-            writeData("StudentLessonSchedule/" + lesson.getStudentId() + "/" + lesson.getDate().substring(6) + "/" +
-                    lesson.getDate().substring(3,5) + "/" + lesson.getDate().substring(0,2) + "/" + lesson.getId(), lesson, callback);
-
-            // Optional: update in user profiles too, if needed
-            writeData("Users/" + lesson.getStudentId() + "/myLessons/" + lesson.getId(), lesson, null);
-            writeData("teachers/" + lesson.getTeacherId() + "/myLessons/" + lesson.getId(), lesson, null);
-        }
-
-    }
+}
 
 
 

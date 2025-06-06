@@ -21,6 +21,7 @@ import com.example.studybuddy.model.User;
 import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
 import com.example.studybuddy.utils.SharedPreferencesUtil;
+import com.example.studybuddy.utils.Validator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,10 +39,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     String email2, pass2;
     String admin = "levyarin14@gmail.com";
     String adminpass ="010407";
-    public static User theUser=null;
 
     public static Boolean isAdmin=false;
-    public  static  Teacher teacher=null;
     private AuthenticationService authenticationService;
     private DatabaseService databaseService;
 
@@ -61,15 +60,10 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         btnLogin.setOnClickListener(this);
         etEmailLogin = findViewById(R.id.etemaillogin);
         etPasswordLogin = findViewById(R.id.etPasswordlogin);
-        theUser=SharedPreferencesUtil.getUser(login.this);
 
-        if(theUser!=null) {
-            email2 = theUser.getEmail();
-            pass2 = theUser.getPassword();
-            etEmailLogin.setText(email2);
-            etPasswordLogin.setText(pass2);
-        }
 
+        etEmailLogin.setText(SharedPreferencesUtil.getUser(this).getEmail());
+        etPasswordLogin.setText(SharedPreferencesUtil.getUser(this).getPassword());
     }
 
     @Override
@@ -77,6 +71,17 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         email2 = etEmailLogin.getText().toString();
         pass2 = etPasswordLogin.getText().toString();
         //Toast.makeText(login.this,email2+" ",Toast.LENGTH_LONG).show();
+
+        if (!Validator.isEmailValid(email2)) {
+            etEmailLogin.setError("Email is not valid");
+            etEmailLogin.requestFocus();
+            return;
+        }
+        if (!Validator.isPasswordValid(pass2)) {
+            etPasswordLogin.setError("Password is not valid");
+            etPasswordLogin.requestFocus();
+            return;
+        }
 
         /// Login user
         loginUser(email2, pass2);
@@ -111,35 +116,25 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                 databaseService.getTeacher(uid, new DatabaseService.DatabaseCallback<Teacher>() {
                     @Override
-                    public void onCompleted(Teacher obj) {
-                        teacher = obj;
-
+                    public void onCompleted(Teacher teacher) {
                         Log.d(TAG, "onCompleted: User data retrieved successfully");
-                        /// save the user data to shared preferences
-
-                        /// Redirect to main activity and clear back stack to prevent user from going back to login screen
-                        Intent mainIntent = new Intent(login.this, TeacherHomePage.class);
-                        /// Clear the back stack (clear history) and start the MainActivity
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                         if (teacher != null) {
+                            /// save the user data to shared preferences
                             SharedPreferencesUtil.saveUser(login.this, teacher);
+                            /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+                            Intent mainIntent = new Intent(login.this, TeacherHomePage.class);
+                            /// Clear the back stack (clear history) and start the MainActivity
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
-
                         }
                         else {
 
                             databaseService.getUser(uid, new DatabaseService.DatabaseCallback<User>() {
-
-
                                 @Override
-                                public void onCompleted(User object) {
-
-                                    theUser = object;
-
+                                public void onCompleted(User user) {
                                     Log.d(TAG, "onCompleted: User data retrieved successfully");
                                     /// save the user data to shared preferences
-                                     SharedPreferencesUtil.saveUser(login.this, theUser);
+                                     SharedPreferencesUtil.saveUser(login.this, user);
                                     /// Redirect to main activity and clear back stack to prevent user from going back to login screen
                                     Intent mainIntent = new Intent(login.this, HomePage.class);
                                     /// Clear the back stack (clear history) and start the MainActivity
@@ -150,8 +145,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                                 @Override
                                 public void onFailed(Exception e) {
                                     Log.e(TAG, "onFailed: Failed to retrieve user data", e);
-                                    //getUser
-
+                                    /// Sign out the user if failed to retrieve user data
+                                    /// This is to prevent the user from being logged in again
+                                    authenticationService.signOut();
                                 }
                             });
                         }
@@ -159,9 +155,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                     @Override
                     public void onFailed(Exception e) {
-                        teacher = null;
-
-                        //getTeacher
+                        Log.e(TAG, e.getLocalizedMessage());
+                        e.printStackTrace();
+                        /// Sign out the user if failed to retrieve user data
+                        /// This is to prevent the user from being logged in again
+                        authenticationService.signOut();
                     }
                 });
             }
@@ -170,12 +168,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             public void onFailed(Exception e) {
                 Log.e(TAG, "onFailed: Failed to log in user", e);
                 /// Show error message to user
-                etEmailLogin.setError("Invalid email or password"+ email2);
-                etPasswordLogin.requestFocus();
+                etEmailLogin.setError(e.getLocalizedMessage());
+                etEmailLogin.requestFocus();
                 /// Sign out the user if failed to retrieve user data
                 /// This is to prevent the user from being logged in again
                 authenticationService.signOut();
-
             }
         });
     }

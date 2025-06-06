@@ -13,41 +13,48 @@
         android:id="@+id/imageView"
         android:layout_width="396dp"
         android:layout_height="361dp"
-        app:srcCompat="@mipmap/finallogo"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="25dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/finallogo" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="229dp"
         android:layout_height="70dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#2A4861"
         android:onClick="goRegister"
         android:text="REGISTER"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="522dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup" />
 
     <Button
         android:id="@+id/signup"
         android:layout_width="231dp"
         android:layout_height="69dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#2A4861"
         android:onClick="goAboutUs"
         android:text="ABOUT US"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="610dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
         android:id="@+id/signup"
         android:layout_width="231dp"
         android:layout_height="69dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#2A4861"
         android:onClick="goLogin"
         android:text="LOGIN"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="441dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,68 +45,66 @@ public class StudentSchedule extends AppCompatActivity {
         uid = authenticationService.getCurrentUserId();
 
         lvScheduleStudent = findViewById(R.id.lvScheduleStudent);
-        adpSearch1 = new LessonAdapter(this, new ArrayList<>(), new LessonAdapter.OnItemLesson() {
-            @Override
-            public boolean isShowAccept() {
-                return false;
-            }
 
-            @Override
-            public boolean isShowReject() {
-                return false;
-            }
 
-            @Override
-            public void onAccept(Lesson lesson) {
-
-            }
-
-            @Override
-            public void onReject(Lesson lesson) {
-
-            }
-
-            @Override
-            public void onDetails(Lesson lesson) {
-                Intent intent = new Intent(StudentSchedule.this, LessonProfile.class);
-                intent.putExtra("lesson", lesson);
-                startActivity(intent);
-            }
-        });  // Updated adapter initialization
-        lvScheduleStudent.setAdapter(adpSearch1);
-
-        getDataFromDB();
+//        getDataFromDB();
     }
 
-    private void getDataFromDB() {
-        databaseService.getLessonForStudent(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
-            @Override
-            public void onCompleted(List<Lesson> lessons) {
-                Log.d("GetStudentSchedule", "Retrieved lessons: " + lessons.size());
-                adpSearch1.setLessonList(lessons);
-            }
-
-            @Override
-            public void onFailed(Exception e) {
-                Log.e("GetStudentScheduleError", "Error fetching lessons", e);
-                // Show error message to the user
-
-                Toast.makeText(StudentSchedule.this, "Failed to fetch lessons", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        databaseService.getUsers(new DatabaseService.DatabaseCallback<List<User>>() {
-            @Override
-            public void onCompleted(List<User> users) {
-                adpSearch1.setStudentList(users);
-            }
-
-            @Override
-            public void onFailed(Exception e) {
-
-            }
-        });
-    }
-
+//    private void getDataFromDB() {
+//        databaseService.getLessonForTeacher(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
+//            @Override
+//            public void onCompleted(List<Lesson> lessonList) {
+//
+//                if (lessonList.isEmpty())
+//                    Log.d("joe", "hiu");
+//                adpSearch1.setLessonList(lessonList)
+//
+//                adpSearch1 = new LessonAdapter(StudentSchedule.this, lessonList, new LessonAdapter.OnItemLesson() {
+//                    @Override
+//                    public boolean isShowAccept() {
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean isShowReject() {
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public void onAccept(Lesson lesson) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onReject(Lesson lesson) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onDetails(Lesson lesson) {
+//                        Intent intent = new Intent(StudentSchedule.this, LessonProfile.class);
+//                        intent.putExtra("lesson", lesson);
+//                        startActivity(intent);
+//                    }
+//                });  // Updated adapter initialization
+//
+//                lvScheduleStudent.setAdapter(adpSearch1);
+//
+//                databaseService.getUsers(new DatabaseService.DatabaseCallback<List<User>>() {
+//                    @Override
+//                    public void onCompleted(List<User> users) {
+//                        adpSearch1.setStudentList(users);
+//                    }
+//
+//                    @Override
+//                    public void onFailed(Exception e) {
+//
+//                    }
+//                });
+//            }
+//
+//
+//        }
+//
+//    }
 }

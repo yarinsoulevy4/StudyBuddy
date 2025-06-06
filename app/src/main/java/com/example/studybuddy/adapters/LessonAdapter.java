@@ -15,27 +15,29 @@ import com.example.studybuddy.R;
 import com.example.studybuddy.model.Lesson;
 import com.example.studybuddy.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LessonAdapter extends ArrayAdapter<Lesson> {
-    private List<Lesson> lessons;
     private LayoutInflater layoutInflater;
     private OnItemLesson onItemLesson;
-
-    private List<User> students;
+    private final List<Lesson> lessons;
+    private final List<User> students;
 
     public interface OnItemLesson {
-        public boolean isShowAccept();
-        public boolean isShowReject();
+        public boolean isShowAccept(Lesson lesson);
+        public boolean isShowReject(Lesson lesson);
         public void onAccept(Lesson lesson);
         public void onReject(Lesson lesson);
         public void onDetails(Lesson lesson);
     }
 
-    public LessonAdapter(Context context, List<Lesson> lessons, OnItemLesson onItemLesson) {
-        super(context, 0, lessons);
+    public LessonAdapter(Context context, List<Lesson> list, OnItemLesson onItemLesson) {
+        super(context, 0);
         this.onItemLesson = onItemLesson;
-        this.lessons = lessons;
+        this.lessons = list;
+        this.students = new ArrayList<>();
         layoutInflater = ((Activity) context).getLayoutInflater();
     }
 
@@ -65,7 +67,7 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
         User student = null;
         for (User s : this.students) {
-            if (s.getId() == lesson.getStudentId()) {
+            if (Objects.equals(s.getId(), lesson.getStudentId())) {
                 student = s;
                 break;
             }
@@ -75,8 +77,8 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
             holder.tvStudent.setText(student.getFullName());
         }
 
-        holder.btnAccept.setVisibility(onItemLesson.isShowAccept() ? View.VISIBLE : View.GONE);
-        holder.btnReject.setVisibility(onItemLesson.isShowReject() ? View.VISIBLE : View.GONE);
+        holder.btnAccept.setVisibility(onItemLesson.isShowAccept(lesson) ? View.VISIBLE : View.GONE);
+        holder.btnReject.setVisibility(onItemLesson.isShowReject(lesson) ? View.VISIBLE : View.GONE);
 
         holder.btnAccept.setOnClickListener(v -> onItemLesson.onAccept(lesson));
         holder.btnReject.setOnClickListener(v -> onItemLesson.onReject(lesson));
@@ -98,7 +100,8 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
     }
 
     public void setStudentList(List<User> students) {
-        this.students = students;
+        this.students.clear();
+        this.students.addAll(students);
         this.notifyDataSetChanged();
     }
 
