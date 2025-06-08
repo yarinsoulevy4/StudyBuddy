@@ -16,6 +16,8 @@
         android:layout_marginTop="17dp"
         android:text="First Name:"
         android:textColor="#2A4861"
+        android:fontFamily="serif"
+
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvLname"
@@ -30,6 +32,8 @@
         android:layout_marginStart="26dp"
         android:text="Last Name:"
         android:textColor="#2A4861"
+        android:fontFamily="serif"
+
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvPhone"
@@ -43,6 +47,8 @@
         android:layout_marginBottom="17dp"
         android:text="Phone:"
         android:textColor="#2A4861"
+        android:fontFamily="serif"
+
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

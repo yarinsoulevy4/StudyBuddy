@@ -11,11 +11,13 @@
 
     <TextView
         android:id="@+id/tvTName"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
+        android:layout_width="302dp"
+        android:layout_height="36dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="1dp"
+        android:fontFamily="serif"
         android:text="Teacher Name"
+
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -30,6 +32,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="Subjects:"
+        android:fontFamily="serif"
+
         android:textColor="#2A4861"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -44,6 +48,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="2dp"
         android:text="price:"
+        android:fontFamily="serif"
+
         android:textColor="#2A4861"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -57,6 +63,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="22dp"
         android:text="rating:"
+        android:fontFamily="serif"
+
         android:textColor="#2A4861"
         android:textSize="20sp"
         android:textStyle="bold"

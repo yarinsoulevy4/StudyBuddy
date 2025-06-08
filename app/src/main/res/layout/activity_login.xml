@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:text="LOGIN"
+        android:fontFamily="serif"
         android:textColor="#2A4861"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"

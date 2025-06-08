@@ -18,9 +18,11 @@
         android:layout_marginEnd="49dp"
         android:layout_marginBottom="91dp"
         android:gravity="center"
-        android:text="המשך תהליך הרשמה"
+        android:text="CONTINUE THE PROCESS"
         android:textColor="#013265"
         android:textSize="30dp"
+        android:fontFamily="serif"
+
         app:layout_constraintBottom_toTopOf="@+id/regS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +34,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="73dp"
         android:backgroundTint="#2A4861"
+        android:fontFamily="serif"
+
         android:onClick="GoAddT"
         android:text=" CONTINUE AS TEACHER"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
@@ -46,6 +50,8 @@
         android:layout_marginBottom="21dp"
         android:backgroundTint="#2A4861"
         android:onClick="GoHome"
+        android:fontFamily="serif"
+
         android:text=" GO TO HOME PAGE"
         app:layout_constraintBottom_toTopOf="@+id/regT"
         app:layout_constraintEnd_toEndOf="parent"

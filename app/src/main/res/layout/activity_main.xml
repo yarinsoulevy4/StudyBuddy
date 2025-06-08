@@ -24,6 +24,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#2A4861"
+        android:fontFamily="serif"
         android:onClick="goRegister"
         android:text="REGISTER"
         android:textSize="20dp"
@@ -39,6 +40,8 @@
         android:backgroundTint="#2A4861"
         android:onClick="goAboutUs"
         android:text="ABOUT US"
+        android:fontFamily="serif"
+
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +54,8 @@
         android:layout_marginTop="80dp"
         android:backgroundTint="#2A4861"
         android:onClick="goLogin"
+        android:fontFamily="serif"
+
         android:text="LOGIN"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -14,6 +14,8 @@
         android:layout_height="61dp"
         android:layout_marginTop="16dp"
         android:text="HOME PAGE"
+        android:fontFamily="serif"
+
         android:textColor="#2A4861"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
@@ -28,6 +30,8 @@
         android:layout_height="0dp"
         android:backgroundTint="#2A4861"
         android:text="MY PROFILE"
+        android:fontFamily="serif"
+
         android:onClick="goProfile"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +43,8 @@
         android:layout_width="244dp"
         android:layout_height="0dp"
         android:backgroundTint="#2A4861"
+        android:fontFamily="serif"
+
         android:text="MY REQUESTS FOR LESSONS"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +58,8 @@
         android:layout_marginBottom="70dp"
         android:backgroundTint="#2A4861"
         android:text="MY NEXT LESSONS"
+        android:fontFamily="serif"
+
         android:onClick="goSchedule"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="FOR TEACHERS"
+        android:fontFamily="serif"
+
         android:textColor="#2A4861"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
