@@ -37,7 +37,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     Button btnLogin;
 
     String email2, pass2;
-    String admin = "levyarin14@gmail.com";
+    String admin = "levyarin2222@gmail.com";
     String adminpass ="010407";
 
     public static Boolean isAdmin=false;
@@ -108,60 +108,59 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 Log.d(TAG, "onCompleted: User logged in successfully");
                 /// get the user data from the database
 
-                if (email2.equals(admin) && pass2.equals(adminpass)) {
+                if (email.equals(admin) && password.equals(adminpass)) {
                     Intent goLog = new Intent(getApplicationContext(), AdminPage.class);
                     isAdmin = true;
                     startActivity(goLog);
+                } else {
+                    databaseService.getTeacher(uid, new DatabaseService.DatabaseCallback<Teacher>() {
+                        @Override
+                        public void onCompleted(Teacher teacher) {
+                            Log.d(TAG, "onCompleted: User data retrieved successfully");
+                            if (teacher != null) {
+                                /// save the user data to shared preferences
+                                SharedPreferencesUtil.saveUser(login.this, teacher);
+                                /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+                                Intent mainIntent = new Intent(login.this, TeacherHomePage.class);
+                                /// Clear the back stack (clear history) and start the MainActivity
+                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(mainIntent);
+                            } else {
+
+                                databaseService.getUser(uid, new DatabaseService.DatabaseCallback<User>() {
+                                    @Override
+                                    public void onCompleted(User user) {
+                                        Log.d(TAG, "onCompleted: User data retrieved successfully");
+                                        /// save the user data to shared preferences
+                                        SharedPreferencesUtil.saveUser(login.this, user);
+                                        /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+                                        Intent mainIntent = new Intent(login.this, HomePage.class);
+                                        /// Clear the back stack (clear history) and start the MainActivity
+                                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(mainIntent);
+                                    }
+
+                                    @Override
+                                    public void onFailed(Exception e) {
+                                        Log.e(TAG, "onFailed: Failed to retrieve user data", e);
+                                        /// Sign out the user if failed to retrieve user data
+                                        /// This is to prevent the user from being logged in again
+                                        authenticationService.signOut();
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFailed(Exception e) {
+                            Log.e(TAG, e.getLocalizedMessage());
+                            e.printStackTrace();
+                            /// Sign out the user if failed to retrieve user data
+                            /// This is to prevent the user from being logged in again
+                            authenticationService.signOut();
+                        }
+                    });
                 }
-
-                databaseService.getTeacher(uid, new DatabaseService.DatabaseCallback<Teacher>() {
-                    @Override
-                    public void onCompleted(Teacher teacher) {
-                        Log.d(TAG, "onCompleted: User data retrieved successfully");
-                        if (teacher != null) {
-                            /// save the user data to shared preferences
-                            SharedPreferencesUtil.saveUser(login.this, teacher);
-                            /// Redirect to main activity and clear back stack to prevent user from going back to login screen
-                            Intent mainIntent = new Intent(login.this, TeacherHomePage.class);
-                            /// Clear the back stack (clear history) and start the MainActivity
-                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(mainIntent);
-                        }
-                        else {
-
-                            databaseService.getUser(uid, new DatabaseService.DatabaseCallback<User>() {
-                                @Override
-                                public void onCompleted(User user) {
-                                    Log.d(TAG, "onCompleted: User data retrieved successfully");
-                                    /// save the user data to shared preferences
-                                     SharedPreferencesUtil.saveUser(login.this, user);
-                                    /// Redirect to main activity and clear back stack to prevent user from going back to login screen
-                                    Intent mainIntent = new Intent(login.this, HomePage.class);
-                                    /// Clear the back stack (clear history) and start the MainActivity
-                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(mainIntent);
-                                }
-
-                                @Override
-                                public void onFailed(Exception e) {
-                                    Log.e(TAG, "onFailed: Failed to retrieve user data", e);
-                                    /// Sign out the user if failed to retrieve user data
-                                    /// This is to prevent the user from being logged in again
-                                    authenticationService.signOut();
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onFailed(Exception e) {
-                        Log.e(TAG, e.getLocalizedMessage());
-                        e.printStackTrace();
-                        /// Sign out the user if failed to retrieve user data
-                        /// This is to prevent the user from being logged in again
-                        authenticationService.signOut();
-                    }
-                });
             }
 
             @Override
@@ -175,5 +174,23 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 authenticationService.signOut();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(AuthenticationService.getInstance().isUserSignedIn()){
+            if (isAdmin){
+                Intent goLog = new Intent(getApplicationContext(), AdminPage.class);
+
+                startActivity(goLog);
+
+
+            }
+
+
+        }
+
+
     }
 }

@@ -12,12 +12,13 @@
         android:id="@+id/txtLogin"
         android:layout_width="161dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:text="LOGIN"
+        android:layout_marginTop="60dp"
         android:fontFamily="serif"
+        android:text="LOGIN"
         android:textColor="#2A4861"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,11 +27,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="70dp"
         android:hint="Email address"
+        android:fontFamily="serif"
+
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
 
@@ -39,11 +43,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="70dp"
         android:hint="Password"
+        android:fontFamily="serif"
+
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etemaillogin" />
 
@@ -51,11 +58,14 @@
         android:id="@+id/btnlogin"
         android:layout_width="152dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="140dp"
         android:backgroundTint="#2A4861"
         android:onClick="goIn"
         android:text="CONTINUE"
+        android:fontFamily="serif"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

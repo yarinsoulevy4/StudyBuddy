@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.model.User;
 import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AddTeacher extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -167,6 +170,32 @@ public class AddTeacher extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_about) {
+            Intent go = new Intent(getApplicationContext(), AboutUs.class);
+            startActivity(go);
+            return true;
+        } else if (id == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut(); // Log out the user
+
+            Intent goLogin = new Intent(getApplicationContext(), login.class);
+            goLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+            startActivity(goLogin);
+            finish(); // Finish current activity
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
 

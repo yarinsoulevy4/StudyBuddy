@@ -30,7 +30,7 @@
     <!-- RecyclerView -->
     <android.widget.SearchView
         android:id="@+id/searchView_admin"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
@@ -38,13 +38,13 @@
         android:fontFamily="serif"
         android:iconifiedByDefault="false"
         android:queryHint="search for a user..."
-        app:layout_constraintBottom_toTopOf="@+id/rvTeachers_admin"
+        app:layout_constraintBottom_toTopOf="@+id/rvUsers_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView7" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTeachers_admin"
+        android:id="@+id/rvUsers_admin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"

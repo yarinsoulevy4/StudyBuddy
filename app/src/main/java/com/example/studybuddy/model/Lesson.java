@@ -9,6 +9,20 @@ public class Lesson implements Serializable {
     protected String teacherId;// the teacher
     protected String subject;// subject of the lesson
     protected String date;
+
+    public Lesson(String id, String studentId, String teacherId, String subject, String date, String price, String hour, Boolean status, String details) {
+        this.id = id;
+        this.studentId = studentId;
+        this.teacherId = teacherId;
+        this.subject = subject;
+        this.date = date;
+        this.price = price;
+        this.hour = hour;
+        this.status = status;
+        this.details = details;
+    }
+
+    protected String price;
     protected String hour;
 
     protected String details;// little summary of the lesson- progress
@@ -18,6 +32,13 @@ public class Lesson implements Serializable {
     public Lesson() {
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public Lesson(String id, String studentId, String teacherId, String subject, String hour, String details, String date, Boolean status) {
         this.id = id;
@@ -30,16 +51,6 @@ public class Lesson implements Serializable {
         this.status = status;
     }
 
-    public Lesson(String id, User student, Teacher teacher, String date, String hour, String details, String subject, Boolean status) {
-        this.id = id;
-        this.studentId = studentId;
-        this.teacherId = teacherId;
-        this.subject = subject;
-        this.date = date;
-        this.hour = hour;
-        this.details = details;
-        this.status = status;
-    }
 
 
     public String getTeacherId() {
@@ -117,6 +128,7 @@ public class Lesson implements Serializable {
                 ", teacherId='" + teacherId + '\'' +
                 ", subject='" + subject + '\'' +
                 ", date='" + date + '\'' +
+                ", price='" + price + '\'' +
                 ", hour='" + hour + '\'' +
                 ", details='" + details + '\'' +
                 ", status=" + status +

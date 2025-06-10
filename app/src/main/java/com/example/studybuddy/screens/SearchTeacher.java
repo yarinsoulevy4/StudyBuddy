@@ -61,6 +61,12 @@ public class SearchTeacher extends AppCompatActivity {
             @Override
             public void onClick(Teacher teacher) {
                 Intent go = new Intent(SearchTeacher.this, AddLesson.class);
+
+                if(login.isAdmin){
+
+                     go = new Intent(SearchTeacher.this, Profile.class);
+                    go.putExtra("userId", teacher.getId());
+                }
                 go.putExtra("teacher", teacher);
                 startActivity(go);
             }
@@ -72,19 +78,19 @@ public class SearchTeacher extends AppCompatActivity {
         fetchTeachers();
 
         // Setup SearchView to filter results dynamically
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                teacherAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                teacherAdapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                teacherAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                teacherAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void fetchTeachers() {

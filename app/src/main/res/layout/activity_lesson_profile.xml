@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <TextView
-        android:id="@+id/value_teacher"
+        android:id="@+id/teacherName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Miri Baruch"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_teacher" />
 
     <TextView
-        android:id="@+id/value_student"
+        android:id="@+id/StudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Yarin Levy"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_student" />
 
     <TextView
-        android:id="@+id/value_hour"
+        android:id="@+id/Hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10:00"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_hour" />
 
     <TextView
-        android:id="@+id/value_subject"
+        android:id="@+id/Subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Computers"
@@ -155,7 +155,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_subject" />
 
     <TextView
-        android:id="@+id/value_price"
+        android:id="@+id/Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100"
@@ -182,7 +182,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_price" />
 
     <TextView
-        android:id="@+id/value_details"
+        android:id="@+id/Details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="In the lab"
@@ -217,5 +217,7 @@
         android:textSize="18sp"
         android:fontFamily="serif"
         app:layout_constraintTop_toTopOf="@+id/label_status"
-        app:layout_constraintStart_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEnd">
+        
+    </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

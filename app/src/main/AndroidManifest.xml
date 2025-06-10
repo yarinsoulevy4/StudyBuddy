@@ -13,6 +13,12 @@
         android:theme="@style/Theme.StudyBuddy"
         tools:targetApi="31">
         <activity
+            android:name=".fade_in"
+            android:exported="false" />
+        <activity
+            android:name=".splash"
+            android:exported="false" />
+        <activity
             android:name=".screens.TeacherList"
             android:exported="false" />
         <activity
@@ -38,21 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".screens.Profile"
-            android:exported="false" />
-        <activity
-            android:name=".screens.myprofileS"
-            android:exported="false" />
-        <activity
-            android:name=".screens.myprofileT"
-            android:exported="false" />
-        <activity
-            android:name=".screens.teacher_profile"
-            android:exported="false" />
-        <activity
-            android:name=".one_user"
-            android:exported="false" />
-        <activity
-            android:name=".OneUser"
             android:exported="false" />
         <activity
             android:name=".screens.AddLesson"

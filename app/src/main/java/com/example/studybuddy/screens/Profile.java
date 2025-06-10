@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.studybuddy.R;
 import com.example.studybuddy.model.User;
+import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
 
 
@@ -21,7 +22,7 @@ public class Profile extends AppCompatActivity {
     private EditText etEditUserName, etEditUserEmail, etEditUserPhone;
     private Button btnSaveUser;
     private DatabaseService databaseService;
-    private String userId;
+    private String userId="";
     private User currentUser;
 
     @Override
@@ -40,6 +41,9 @@ public class Profile extends AppCompatActivity {
 
         // קבלת המידע של המשתמש הנוכחי (המידע יעבור כ-Intent)
         userId = getIntent().getStringExtra("userId");
+
+        if(userId==null)
+            userId= AuthenticationService.getInstance().getCurrentUserId();
         databaseService.getUser(userId, new DatabaseService.DatabaseCallback<User>() {
             @Override
             public void onCompleted(User user) {

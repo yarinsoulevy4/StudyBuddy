@@ -8,92 +8,103 @@
     <TextView
         android:id="@+id/tvStudentNameAdapter"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="0dp"
+
         android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="13dp"
+        android:fontFamily="serif"
         android:text="name"
         android:textColor="#2A4861"
         android:textSize="20dp"
-        android:fontFamily="serif"
-
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvDateAdapter"
-        app:layout_constraintEnd_toStartOf="@+id/tvDateAdapter"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvDateAdapter"
+        app:layout_constraintEnd_toStartOf="@+id/tvSubjectAdapter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDateAdapter"
         android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="7dp"
-        android:text="date"
-        android:fontFamily="serif"
+        android:layout_height="0dp"
 
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="13dp"
+        android:fontFamily="serif"
+        android:text="date"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvHourAdapter"
-        app:layout_constraintStart_toEndOf="@+id/tvStudentNameAdapter"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btDecline"
+        app:layout_constraintEnd_toStartOf="@+id/tvSubjectAdapter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStudentNameAdapter" />
 
     <TextView
         android:id="@+id/tvHourAdapter"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="serif"
 
-        android:layout_marginEnd="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="73dp"
+        android:fontFamily="serif"
         android:text="hour"
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDateAdapter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvDateAdapter"
-        app:layout_constraintTop_toTopOf="@+id/tvDateAdapter" />
+        app:layout_constraintBottom_toBottomOf="@+id/btAccept"
+        app:layout_constraintEnd_toStartOf="@+id/btDecline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btDecline" />
 
     <TextView
         android:id="@+id/tvSubjectAdapter"
-        android:layout_width="324dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="45dp"
         android:fontFamily="serif"
         android:text="subjects"
-
         android:textColor="#2A4861"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btAccept"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintStart_toEndOf="@+id/tvDateAdapter"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btAccept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:backgroundTint="#94CE94"
-        android:text="ACCEPT"
-        android:fontFamily="serif"
+        android:layout_width="111dp"
+        android:layout_height="49dp"
 
-        app:layout_constraintBaseline_toBaselineOf="@+id/btDecline"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#94CE94"
+        android:fontFamily="serif"
+        android:text="ACCEPT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btDecline"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubjectAdapter" />
 
     <Button
         android:id="@+id/btDecline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="4dp"
+
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#D14A6E"
         android:fontFamily="serif"
-
         android:text="DECLINE"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btAccept" />
+        app:layout_constraintEnd_toStartOf="@+id/btAccept"
+        app:layout_constraintStart_toEndOf="@+id/tvHourAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateAdapter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

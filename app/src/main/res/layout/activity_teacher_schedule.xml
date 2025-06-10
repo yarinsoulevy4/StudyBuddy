@@ -13,12 +13,9 @@
     <TextView
         android:id="@+id/textView10"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="38dp"
+        android:layout_height="wrap_content"
 
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="serif"
         android:text="MY NEXT LESSONS"
         android:textColor="#2E4963"
@@ -31,11 +28,8 @@
     <ListView
 
         android:id="@+id/lvScheduleTeacher"
-        android:layout_width="394dp"
-        android:layout_height="165dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="437dp"
+        android:layout_width="402dp"
+        android:layout_height="558dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

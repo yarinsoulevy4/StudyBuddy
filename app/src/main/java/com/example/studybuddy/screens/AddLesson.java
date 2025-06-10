@@ -3,6 +3,8 @@ package com.example.studybuddy.screens;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,6 +22,7 @@ import com.example.studybuddy.model.Teacher;
 import com.example.studybuddy.model.User;
 import com.example.studybuddy.services.AuthenticationService;
 import com.example.studybuddy.services.DatabaseService;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
@@ -102,7 +105,9 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         details = etclassdetails.getText().toString() + "";
         subject = etSubjects.getText().toString() + "";
 
-        final Lesson lesson = new Lesson(id, user.getId(), teacher.getId(), selectedDate, hour, details, subject, null);
+
+
+            final Lesson lesson = new Lesson(id, user.getId(), teacher.getId(), subject, hour, details, selectedDate, null);
 
         submitLesson(lesson);
 
@@ -187,6 +192,32 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         etclassdetails.setText("");
         etSubjects.setText("");
         sphours.setSelection(0);  // Reset spinner to first item
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_about) {
+            Intent go = new Intent(getApplicationContext(), AboutUs.class);
+            startActivity(go);
+            return true;
+        } else if (id == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut(); // Log out the user
+
+            Intent goLogin = new Intent(getApplicationContext(), login.class);
+            goLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+            startActivity(goLogin);
+            finish(); // Finish current activity
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
 
