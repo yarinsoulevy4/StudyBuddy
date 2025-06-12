@@ -33,10 +33,10 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
         public void onDetails(Lesson lesson);
     }
 
-    public LessonAdapter(Context context, List<Lesson> list, OnItemLesson onItemLesson) {
+    public LessonAdapter(Context context, OnItemLesson onItemLesson) {
         super(context, 0);
         this.onItemLesson = onItemLesson;
-        this.lessons = list;
+        this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
         layoutInflater = ((Activity) context).getLayoutInflater();
     }

@@ -44,31 +44,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(go);
     }
 
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_about) {
-            Intent go = new Intent(getApplicationContext(), AboutUs.class);
-            startActivity(go);
-            return true;
-        } else if (id == R.id.action_logout) {
-            FirebaseAuth.getInstance().signOut(); // Log out the user
-
-            Intent goLogin = new Intent(getApplicationContext(), login.class);
-            goLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
-            startActivity(goLogin);
-            finish(); // Finish current activity
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 }

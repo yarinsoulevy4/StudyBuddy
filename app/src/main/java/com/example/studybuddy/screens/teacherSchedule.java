@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class teacherSchedule extends AppCompatActivity {
 
@@ -35,7 +36,6 @@ public class teacherSchedule extends AppCompatActivity {
     private DatabaseService databaseService;
     private AuthenticationService authenticationService;
     String uid;
-    Teacher teacher = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,38 @@ public class teacherSchedule extends AppCompatActivity {
 
         lvScheduleTeacher = findViewById(R.id.lvScheduleTeacher);
 
+        adpSearch1 = new LessonAdapter(teacherSchedule.this, new LessonAdapter.OnItemLesson() {
+            @Override
+            public boolean isShowAccept(Lesson lesson) {
+                return lesson.getStatus() == null;
+            }
 
+            @Override
+            public boolean isShowReject(Lesson lesson) {
+                return lesson.getStatus() == null;
+            }
 
+            @Override
+            public void onAccept(Lesson lesson) {
+                lesson.setStatus(true);
+                updateLesson(lesson);
+            }
+
+            @Override
+            public void onReject(Lesson lesson) {
+                lesson.setStatus(false);
+                updateLesson(lesson);
+            }
+
+            @Override
+            public void onDetails(Lesson lesson) {
+                Intent intent = new Intent(teacherSchedule.this, LessonProfile.class);
+                intent.putExtra("lesson", lesson);
+                startActivity(intent);
+            }
+        });  // Updated adapter initialization
+
+        lvScheduleTeacher.setAdapter(adpSearch1);
 
         getDataFromDB();
     }
@@ -65,47 +95,10 @@ public class teacherSchedule extends AppCompatActivity {
             public void onCompleted(List<Lesson> lessonList) {
                 Log.d("GetCoachSchedule", "Retrieved lessons: " + lessons.size());
 
+                String teacherId = AuthenticationService.getInstance().getCurrentUserId();
+                lessonList.removeIf(lesson -> !Objects.equals(lesson.getTeacherId(), teacherId));
+                adpSearch1.setLessonList(lessonList);
 
-
-                for(int i=0; i< lessonList.size(); i++)
-                    lessons.add(lessonList.get(i));
-
-                if(lessons.isEmpty())
-                    Log.d("joe", "hiu");
-
-
-                adpSearch1 = new LessonAdapter(teacherSchedule.this, lessons, new LessonAdapter.OnItemLesson() {
-                    @Override
-                    public boolean isShowAccept(Lesson lesson) {
-                        return lesson.getStatus() == null;
-                    }
-
-                    @Override
-                    public boolean isShowReject(Lesson lesson) {
-                        return lesson.getStatus() == null;
-                    }
-
-                    @Override
-                    public void onAccept(Lesson lesson) {
-                        lesson.setStatus(true);
-                        updateLesson(lesson);
-                    }
-
-                    @Override
-                    public void onReject(Lesson lesson) {
-                        lesson.setStatus(false);
-                        updateLesson(lesson);
-                    }
-
-                    @Override
-                    public void onDetails(Lesson lesson) {
-                        Intent intent = new Intent(teacherSchedule.this, LessonProfile.class);
-                        intent.putExtra("lesson", lesson);
-                        startActivity(intent);
-                    }
-                });  // Updated adapter initialization
-
-                 lvScheduleTeacher.setAdapter(adpSearch1);
             }
 
             @Override

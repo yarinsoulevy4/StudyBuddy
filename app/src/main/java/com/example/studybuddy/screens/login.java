@@ -62,8 +62,12 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         etPasswordLogin = findViewById(R.id.etPasswordlogin);
 
 
-        etEmailLogin.setText(SharedPreferencesUtil.getUser(this).getEmail());
-        etPasswordLogin.setText(SharedPreferencesUtil.getUser(this).getPassword());
+        User user = SharedPreferencesUtil.getUser(this);
+        if (user != null) {
+            etEmailLogin.setText(user.getEmail());
+            etPasswordLogin.setText(user.getPassword());
+        }
+
     }
 
     @Override
@@ -179,18 +183,14 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        if(AuthenticationService.getInstance().isUserSignedIn()){
-            if (isAdmin){
+        if(AuthenticationService.getInstance().isUserSignedIn()) {
+            if (isAdmin) {
                 Intent goLog = new Intent(getApplicationContext(), AdminPage.class);
 
                 startActivity(goLog);
 
 
             }
-
-
         }
-
-
     }
 }

@@ -77,6 +77,7 @@
         android:backgroundTint="#2A4861"
         android:fontFamily="serif"
         android:text="CREATE LESSON"
+        android:textSize="20sp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

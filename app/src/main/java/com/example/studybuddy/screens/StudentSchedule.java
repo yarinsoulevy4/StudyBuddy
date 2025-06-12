@@ -49,67 +49,74 @@ public class StudentSchedule extends AppCompatActivity {
 
         lvScheduleStudent = findViewById(R.id.lvScheduleStudent);
 
+        adpSearch1 = new LessonAdapter(this, new LessonAdapter.OnItemLesson() {
+            @Override
+            public boolean isShowAccept(Lesson lesson) {
+                return false;
+            }
 
-//        getDataFromDB();
+            @Override
+            public boolean isShowReject(Lesson lesson) {
+                return false;
+            }
+
+            @Override
+            public void onAccept(Lesson lesson) {
+
+            }
+
+            @Override
+            public void onReject(Lesson lesson) {
+
+            }
+
+            @Override
+            public void onDetails(Lesson lesson) {
+                Intent intent = new Intent(StudentSchedule.this, LessonProfile.class);
+                intent.putExtra("lesson", lesson);
+                startActivity(intent);
+            }
+        });
+
+        lvScheduleStudent.setAdapter(adpSearch1);
+
+        getDataFromDB();
     }
 
-//    private void getDataFromDB() {
-//        databaseService.getLessonForTeacher(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
-//            @Override
-//            public void onCompleted(List<Lesson> lessonList) {
-//
-//                if (lessonList.isEmpty())
-//                    Log.d("joe", "hiu");
-//                adpSearch1.setLessonList(lessonList)
-//
-//                adpSearch1 = new LessonAdapter(StudentSchedule.this, lessonList, new LessonAdapter.OnItemLesson() {
-//                    @Override
-//                    public boolean isShowAccept() {
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public boolean isShowReject() {
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public void onAccept(Lesson lesson) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onReject(Lesson lesson) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onDetails(Lesson lesson) {
-//                        Intent intent = new Intent(StudentSchedule.this, LessonProfile.class);
-//                        intent.putExtra("lesson", lesson);
-//                        startActivity(intent);
-//                    }
-//                });  // Updated adapter initialization
-//
-//                lvScheduleStudent.setAdapter(adpSearch1);
-//
-//                databaseService.getUsers(new DatabaseService.DatabaseCallback<List<User>>() {
-//                    @Override
-//                    public void onCompleted(List<User> users) {
-//                        adpSearch1.setStudentList(users);
-//                    }
-//
-//                    @Override
-//                    public void onFailed(Exception e) {
-//
-//                    }
-//                });
-//            }
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.mainmenu, menu);
-    return true;
-}
+    private void getDataFromDB() {
+
+        databaseService.getLessonForStudent(uid, new DatabaseService.DatabaseCallback<List<Lesson>>() {
+            @Override
+            public void onCompleted(List<Lesson> lessons) {
+                adpSearch1.setLessonList(lessons);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+
+        databaseService.getUsers(new DatabaseService.DatabaseCallback<List<User>>() {
+            @Override
+            public void onCompleted(List<User> users) {
+                adpSearch1.setStudentList(users);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

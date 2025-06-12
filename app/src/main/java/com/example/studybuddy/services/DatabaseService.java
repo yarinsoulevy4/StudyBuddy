@@ -129,7 +129,32 @@ public class DatabaseService {
     /// @see DatabaseCallback
     /// @see User
     public void getUser(@NotNull final String uid, @NotNull final DatabaseCallback<User> callback) {
-        getData("Users/" + uid, User.class, callback);
+        getData("Users/" + uid, User.class, new DatabaseCallback<User>() {
+            @Override
+            public void onCompleted(User user) {
+                if (user != null) {
+                    callback.onCompleted(user);
+                    return;
+                }
+
+                getTeacher(uid, new DatabaseCallback<Teacher>() {
+                    @Override
+                    public void onCompleted(Teacher teacher) {
+                        callback.onCompleted(teacher);
+                    }
+
+                    @Override
+                    public void onFailed(Exception e) {
+                        callback.onFailed(e);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                callback.onFailed(e);
+            }
+        });
     }
 
     // public methods to interact with the database
@@ -345,11 +370,11 @@ public class DatabaseService {
 
     public void getLessonForStudent(String uid, @NotNull final DatabaseCallback<List<Lesson>> callback) {
 
-        getDataList("lessons", Lesson.class, new DatabaseCallback<List<Lesson>>() {
+        getDataList("Lessons", Lesson.class, new DatabaseCallback<List<Lesson>>() {
             @Override
-            public void onCompleted(List<Lesson> workouts) {
-                workouts.removeIf(workout -> !workout.getStudentId().equals(uid));
-                callback.onCompleted(workouts);
+            public void onCompleted(List<Lesson> lessons) {
+                lessons.removeIf(lesson -> !lesson.getStudentId().equals(uid));
+                callback.onCompleted(lessons);
             }
 
             @Override
