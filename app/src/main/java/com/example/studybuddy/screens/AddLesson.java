@@ -198,8 +198,6 @@ public class AddLesson extends AppCompatActivity implements View.OnClickListener
         getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

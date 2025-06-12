@@ -12,78 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyBuddy"
         tools:targetApi="31">
-        <activity
-            android:name=".fade_in"
-            android:exported="false" />
+
+        <!-- ✅ Splash screen set as the launcher activity -->
         <activity
             android:name=".splash"
-            android:exported="false" />
-        <activity
-            android:name=".screens.TeacherList"
-            android:exported="false" />
-        <activity
-            android:name=".screens.StudentList"
-            android:exported="false" />
-        <activity
-            android:name=".screens.StudentProfile"
-            android:exported="false" />
-        <activity
-            android:name=".screens.TeacherProfile"
-            android:exported="false" />
-        <activity
-            android:name=".screens.LessonProfile"
-            android:exported="false" />
-        <activity
-            android:name=".screens.StudentSchedule"
-            android:exported="false" />
-        <activity
-            android:name=".screens.sTUDEN"
-            android:exported="false" />
-        <activity
-            android:name=".screens.teacherSchedule"
-            android:exported="false" />
-        <activity
-            android:name=".screens.Profile"
-            android:exported="false" />
-        <activity
-            android:name=".screens.AddLesson"
-            android:exported="false" />
-        <activity
-            android:name=".TeacherHomePage"
-            android:exported="false" />
-        <activity
-            android:name=".screens.HomePage"
-            android:exported="false" />
-        <activity
-            android:name=".screens.AddTeacher"
-            android:exported="false" />
-        <activity
-            android:name=".screens.AboutUs"
-            android:exported="false" />
-        <activity
-            android:name=".screens.AdminPage"
-            android:exported="false" />
-        <activity
-            android:name=".screens.SearchTeacher"
-            android:exported="false" />
-        <activity
-            android:name=".screens.RegTorS"
-            android:exported="false" />
-        <activity
-            android:name=".screens.login"
-            android:exported="false" />
-        <activity
-            android:name=".screens.Register"
-            android:exported="false" />
-        <activity
-            android:name=".screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- All other activities -->
+        <activity android:name=".screens.teacherSchedule" android:exported="false" />
+        <activity android:name=".screens.StudentList" android:exported="false" />
+        <activity android:name=".screens.StudentProfile" android:exported="false" />
+        <activity android:name=".screens.TeacherProfile" android:exported="false" />
+        <activity android:name=".screens.LessonProfile" android:exported="false" />
+        <activity android:name=".screens.StudentSchedule" android:exported="false" />
+        <activity android:name=".screens.Profile" android:exported="false" />
+        <activity android:name=".screens.AddLesson" android:exported="false" />
+        <activity android:name=".TeacherHomePage" android:exported="false" />
+        <activity android:name=".screens.HomePage" android:exported="false" />
+        <activity android:name=".screens.AddTeacher" android:exported="false" />
+        <activity android:name=".screens.AboutUs" android:exported="false" />
+        <activity android:name=".screens.AdminPage" android:exported="false" />
+        <activity android:name=".screens.SearchTeacher" android:exported="false" />
+        <activity android:name=".screens.RegTorS" android:exported="false" />
+        <activity android:name=".screens.login" android:exported="false" />
+        <activity android:name=".screens.Register" android:exported="false" />
+        <activity android:name=".screens.MainActivity" android:exported="true" />
+
     </application>
 
 </manifest>

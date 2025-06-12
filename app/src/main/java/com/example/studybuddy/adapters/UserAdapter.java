@@ -1,5 +1,7 @@
 package com.example.studybuddy.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studybuddy.R;
 import com.example.studybuddy.model.User;
+import com.example.studybuddy.screens.AdminPage;
+import com.example.studybuddy.screens.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +27,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>  i
     /// @see com.example.studybuddy.model.User
     private final List<User> userList;
 
+
+
     private List<User> userListFilter=new ArrayList<>();
 
-    public UserAdapter(List<User> userList) {
+    Context context;
+
+    public UserAdapter(List<User> userList, Context     context) {
         this.userList = userList;
 
         this.userListFilter.addAll( userList);
+        this.context=context;
     }
 
     /// create a view holder for the adapter
@@ -58,6 +67,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>  i
         holder.tvFname.setText(user.getFname());
         holder.tvLname.setText(user.getLname());
         holder.tvPhone.setText(user.getPhone());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent go = new Intent(context, Profile.class);
+                go.putExtra("userId", user.getId());
+                context.startActivity(go);
+
+
+            }
+        });
 
     }
 
@@ -116,6 +137,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>  i
             tvFname = itemView.findViewById(R.id.tvFname);
             tvLname = itemView.findViewById(R.id.tvLname);
             tvPhone = itemView.findViewById(R.id.tvPhone);
+
+
         }
     }
 }

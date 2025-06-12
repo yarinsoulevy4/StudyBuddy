@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="244dp"
+        android:layout_height="47dp"
 
         android:layout_marginStart="74dp"
         android:layout_marginTop="16dp"
@@ -23,6 +23,7 @@
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +31,7 @@
         android:id="@+id/button3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:textSize="20sp"
 
         android:layout_marginStart="65dp"
         android:layout_marginEnd="65dp"
@@ -53,6 +55,8 @@
         android:backgroundTint="#2A4861"
         android:fontFamily="serif"
         android:onClick="goSearchTeacher"
+        android:textSize="20sp"
+
         android:text="SCHEDULE A LESSON"
         app:layout_constraintBottom_toTopOf="@+id/button44"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +72,8 @@
         android:fontFamily="serif"
         android:onClick="goSchedule"
         android:text="MY NEXT LESSONS"
+        android:textSize="20sp"
+
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="@+id/button3"
         app:layout_constraintStart_toStartOf="@+id/button3"

@@ -13,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="serif"
         android:text="EDIT USER PROFILE"
         android:textColor="#2A4861"
-        android:fontFamily="serif"
 
         android:textSize="35sp"
         android:textStyle="bold"
@@ -28,14 +28,14 @@
         android:id="@+id/tvEditUserNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="NAME"
+        android:layout_marginTop="40dp"
         android:fontFamily="serif"
+        android:text="NAME"
 
         android:textColor="#2A4861"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEditTitle" />
 
@@ -44,8 +44,8 @@
         android:layout_width="316dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
-        android:hint="Enter user name"
         android:fontFamily="serif"
+        android:hint="Enter user name"
 
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,14 +57,14 @@
         android:id="@+id/tvEditUserEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="EMAIL"
+        android:layout_marginTop="16dp"
         android:fontFamily="serif"
+        android:text="EMAIL"
 
         android:textColor="#2A4861"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEditUserName" />
 
@@ -72,13 +72,13 @@
         android:id="@+id/etEditUserEmail"
         android:layout_width="317dp"
         android:layout_height="47dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="serif"
 
         android:hint="Enter email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEditUserEmailLabel" />
 
@@ -102,11 +102,11 @@
         android:layout_width="315dp"
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
-        android:hint="Enter phone number"
-        android:textColor="#2A4861"
         android:fontFamily="serif"
-
+        android:hint="Enter phone number"
         android:inputType="phone"
+
+        android:textColor="#2A4861"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEditUserPhoneLabel" />
@@ -116,10 +116,10 @@
         android:layout_width="211dp"
         android:layout_height="57dp"
         android:layout_marginTop="152dp"
-        android:text="SAVE CHANGES"
+        android:backgroundTint="#2A4861"
         android:fontFamily="serif"
 
-        android:backgroundTint="#2A4861"
+        android:text="SAVE CHANGES"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"

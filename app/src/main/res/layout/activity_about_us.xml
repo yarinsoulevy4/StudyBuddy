@@ -8,70 +8,66 @@
     android:background="#87B4D8"
     tools:context=".screens.AboutUs">
 
+    <!-- Title -->
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="serif"
         android:text="ABOUT US"
         android:textColor="#2A4861"
-        android:textSize="50sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Logo Image -->
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/aboutBody"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="App Logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo12">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView8"
+        app:srcCompat="@mipmap/logo12" />
 
-    </ImageView>
-
+    <!-- About Body -->
     <TextView
         android:id="@+id/aboutBody"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_width="399dp"
+        android:layout_height="415dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="serif"
+        android:lineSpacingExtra="6dp"
         android:text="Study Buddy was created to make it easier for students and teachers to connect and schedule lessons. Whether it’s tutoring, extra help, or skill-building, our goal is to simplify the process and save time for everyone.\n\nWe built this app because we saw how hard it can be to coordinate lessons, especially with busy schedules. Study Buddy is here to take the stress out of planning and help students focus on learning."
         android:textAlignment="center"
         android:textColor="#2A4861"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/tagline"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@id/imageView4" />
 
+    <!-- Tagline -->
     <TextView
         android:id="@+id/tagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="serif"
-        android:gravity="center"
-        android:text="Simple Smart Supportive"
-
+        android:text="Simple • Smart • Supportive"
         android:textColor="#2A4861"
-        android:textSize="29sp"
+        android:textSize="22sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutBody">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@id/aboutBody" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
